@@ -28,30 +28,32 @@
                 <td>86 (the band) - True Life Songs and Pictures</td>
                 <td>$15.95</td>
                 <td><a title="Edit" href="product.jsp">Edit</a></td>
-                <td><a title="Delete" href="product.jsp">Delete</a></td>
+                <td><a title="Delete" href="confirmDelete.jsp">Delete</a></td>
             </tr>
             <tr>
                 <td>pf01</td>
                 <td>Paddlefoot - The first CD</td>
                 <td>$12.95</td>
                 <td><a title="Edit" href="product.jsp">Edit</a></td>
-                <td><a title="Delete" href="product.jsp">Delete</a></td>
+                <td><a title="Delete" href="confirmDelete.jsp.jsp">Delete</a></td>
             </tr>
             <tr>
                 <td>pf02</td>
                 <td>Paddlefoot - The second CD</td>
                 <td>$14.95</td>
                 <td><a title="Edit" href="product.jsp">Edit</a></td>
-                <td><a title="Delete" href="product.jsp">Delete</a></td>
+                <td><a title="Delete" href="confirmDelete.jsp">Delete</a></td>
             </tr>
             <tr>
                 <td>jr01</td>
                 <td>Joe Rut - Genuine Wood Grained Finish</td>
                 <td>$14.95</td>
                 <td><a title="Edit" href="product.jsp">Edit</a></td>
-                <td><a title="Delete" href="product.jsp">Delete</a></td>
+                <td><a title="Delete" href="confirmDelete.jsp">Delete</a></td>
             </tr>
         </table>
-        <button type="button" href="product.jsp">Add Product</button>
+        <form action="product.jsp">
+        <input type="submit" value="Add Product">
+        </form>
     </body>
 </html>

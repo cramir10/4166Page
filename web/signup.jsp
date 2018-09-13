@@ -14,13 +14,14 @@
     </head>
     <body>
         <h1 id="head">Sign-up Form</h1>
-        <form action="" method="post">
-            First Name: <input type="text" name="first">
-            Last Name: <input type="text" name="last">
-            Email: <input type="text" name="email">
-            Username: <input type="text" name="user">
-            Password: <input type="password" name="pass">
+        <form id="signup" action="products.jsp" method="post">
+            First Name: <input type="text" name="first"><br>
+            Last Name: <input type="text" name="last"><br>
+            Email: <input type="text" name="email"><br>
+            Username: <input type="text" name="user"><br>
+            Password: <input type="password" name="pass"><br>
+            <input type="submit" value="Sign Up" >
         </form>
-        <input id="signUp" type="submit" value="Sign Up" >
+        
     </body>
 </html>

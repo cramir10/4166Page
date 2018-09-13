@@ -14,11 +14,12 @@
     </head>
     <body>
         <h1 id="head">Login</h1>
-        <form action="" method="post">
+        <form id="login" action="products.jsp" method="post">
             Username: <input type="text" name="user"><br>
             Password: <input type="password" name="pass"><br>
+            <input type="submit" value="Login">
         </form>
-        <input id="login" type="submit" value="Login" ><br>
+        
         <a href="signup.jsp">New user? Click here to register</a>   
     </body>
 </html>

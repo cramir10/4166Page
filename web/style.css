@@ -20,11 +20,12 @@ td {
     margin-bottom: 30px;
     
 }
-label{
+#signup {
     display: inline-block;
-    width:100px;
-    text-align: left;
+    width: 250px;
+    text-align: right;
 }
+
 #productButton {
     display: inline-block;
     text-align: left;
