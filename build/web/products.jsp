@@ -17,11 +17,11 @@
         <h1 id="head">Products</h1>
         <table>
             <tr id="heading">
-                <td>Code</td>
-                <td>Description</td>
-                <td>Price</td>
-                <td></td>
-                <td></td>
+                <th>Code</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th></th>
+                <th></th>
             </tr>
             <tr>
                 <td>8601</td>
@@ -52,8 +52,7 @@
                 <td><a title="Delete" href="confirmDelete.jsp">Delete</a></td>
             </tr>
         </table>
-        <form action="product.jsp">
-        <input type="submit" value="Add Product">
-        </form>
+        <button class="productButton" id="button_add_product" onClick="location.href='product.jsp'" >Add Product</button>
+        
     </body>
 </html>

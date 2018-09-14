@@ -4,7 +4,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
 
-public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
+public final class product_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
 
   private static final JspFactory _jspxFactory = JspFactory.getDefaultFactory();
@@ -49,11 +49,22 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("    <head>\r\n");
       out.write("        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\r\n");
       out.write("        <title>Product Management</title>\r\n");
-      out.write("        <link rel=\"stylesheet\" href=\"style.css\"> \r\n");
+      out.write("        <link rel=\"stylesheet\" href=\"style.css\">\r\n");
       out.write("    </head>\r\n");
       out.write("    <body>\r\n");
-      out.write("        <h1 id=\"head\">Product Management</h1>\r\n");
-      out.write("        <a title=\"View Products\" href=\"products.jsp\">View Products</a>\r\n");
+      out.write("        <p>User <a title=\"logout\" href=\"login.jsp\">Logout</a></p>\r\n");
+      out.write("        <h1 id=\"head\">Product</h1>\r\n");
+      out.write("        <form id=\"product\" action=\"products.jsp\" method=\"post\">\r\n");
+      out.write("            Code: <input type=\"text\" name=\"code\"><br>\r\n");
+      out.write("            Description: <textarea name=\"description\" cols=\"50\" rows=\"4\"></textarea><br>\r\n");
+      out.write("            Price: <input type=\"text\" name=\"price\"><br>\r\n");
+      out.write("            <input type=\"submit\" id=\"productButton\" value=\"Update Product\"><br>\r\n");
+      out.write("            \r\n");
+      out.write("        </form>\r\n");
+      out.write("        <form id=\"product\" action=\"products.jsp\">\r\n");
+      out.write("            <input type=\"submit\" id=\"productButton\" value=\"View Products\">\r\n");
+      out.write("        </form>\r\n");
+      out.write("        \r\n");
       out.write("    </body>\r\n");
       out.write("</html>\r\n");
     } catch (Throwable t) {

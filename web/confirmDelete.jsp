@@ -18,7 +18,7 @@
         <h3 id="deleteProduct">Code: </h3><br>
         <h3 id="deleteProduct">Description: </h3><br>
         <h3 id="deleteProduct">Price: </h3>
-        <button type="button">Yes</button>
-        <button type="button">No</button>
+        <button class="deleteButtons"type="button">Yes</button>
+        <button class="deleteButtons"type="button">No</button>
     </body>
 </html>

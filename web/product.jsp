@@ -15,15 +15,14 @@
     <body>
         <p>User <a title="logout" href="login.jsp">Logout</a></p>
         <h1 id="head">Product</h1>
-        <form id="product" action="products.jsp" method="post">
-            Code: <input type="text" name="code"><br>
-            Description: <textarea name="description" cols="50" rows="4"></textarea><br>
-            Price: <input type="text" name="price"><br>
-            <input type="submit" id="productButton" value="Update Product"><br>
-            
-        </form>
-        <form id="product" action="products.jsp">
-            <input type="submit" id="productButton" value="View Products">
+        <form class="product" action="products.jsp" method="post">
+            <div><label>Code: </label><input type="text" name="code"></div>
+            <div><label>Description: </label><textarea name="description" cols="50" rows="4"></textarea></div>
+            <div><label>Price: </label><input type="text" name="price"></div>
+            <div id="buttons">
+                <input type="submit" class="productButton" value="Update Product">
+                <button class="productButton" onClick="location.href='products.jsp'" >View Products</button>
+            </div>
         </form>
         
     </body>
