@@ -13,13 +13,13 @@
         <title>Product Management</title>
     </head>
     <body>
-        <h1 id="head">Sign-up Form</h1>
+        <h1>Sign-up Form</h1>
         <form id="signup" action="products.jsp" method="post">
-            First Name: <input type="text" name="first"><br>
-            Last Name: <input type="text" name="last"><br>
-            Email: <input type="text" name="email"><br>
-            Username: <input type="text" name="user"><br>
-            Password: <input type="password" name="pass"><br>
+            <div> <label>First Name: </label><input type="text" name="first"></div> 
+            <div> <label> Last Name: </label><input type="text" name="last"></div>
+            <div> <label>Email: </label><input type="text" name="email"></div>
+            <div> <label>Username: </label><input type="text" name="user"></div>
+            <div> <label> Password: </label><input type="password" name="pass"></div>
             <input type="submit" value="Sign Up" >
         </form>
         

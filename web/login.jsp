@@ -15,8 +15,8 @@
     <body>
         <h1 id="head">Login</h1>
         <form id="login" action="products.jsp" method="post">
-            Username: <input type="text" name="user"><br>
-            Password: <input type="password" name="pass"><br>
+            <div> <label> Username: </label><input type="text" name="user"></div>
+           <div> <label> Password: </label><input type="password" name="pass"></div>
             <input type="submit" value="Login">
         </form>
         
