@@ -79,19 +79,18 @@ public class ProductManagementServlet extends HttpServlet {
                     }
         } else if (action.equals("displayProducts")) {
             getServletContext().getRequestDispatcher(display).forward(request, response);
-            doPost(request, response);
 
         } else if (action.equals("addProduct")) {
             getServletContext().getRequestDispatcher(add).forward(request, response);
-            doPost(request, response);
+
 
         } else if (action.equals("displayProduct")) {
             getServletContext().getRequestDispatcher(add).forward(request, response);
-            doPost(request, response);
+
 
         } else if (action.equals("deleteProduct")) {
             getServletContext().getRequestDispatcher(delete).forward(request, response);
-            doPost(request, response);
+
 
         }
 

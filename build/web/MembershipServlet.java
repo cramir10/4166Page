@@ -55,7 +55,32 @@ public class MembershipServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+            response.setContentType("text/html;charset=UTF-8");
+        String action = request.getParameter("action");
+        String log = "/login.jsp";
+        String sign = "/signup.jsp";
+        if (action == null || !action.equals("signup") || !action.equals("login")) {       
+            try (PrintWriter out = response.getWriter()) {
+                /* TODO output your page here. You may use following sample code. */
+                out.println("<!DOCTYPE html>");
+                out.println("<html>");
+                out.println("<head>");
+                out.println("<title>Servlet MembershipControllerServlet</title>");            
+                out.println("</head>");
+                out.println("<body>");
+                out.println("<h1>Servlet MembershipControllerServlet at " + request.getContextPath() + "</h1>");
+                out.println("<p>Action is " + action + "</p>");
+                out.println("<p>Error! The action parameter is required, only signup value is valid</p>");
+                out.println("</body>");
+                out.println("</html>");
+            }
+        }
+        else if (action.equals("login")) {
+            getServletContext().getRequestDispatcher(log).forward(request, response);
+        }
+        else if (action.equals("signup")) {
+            getServletContext().getRequestDispatcher(sign).forward(request, response);
+        }
     }
 
     /**
