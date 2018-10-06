@@ -34,7 +34,7 @@ public class ProductManagementServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ProductManagementServlet</title>");            
+            out.println("<title>Servlet ProductManagementServlet</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet ProductManagementServlet at " + request.getContextPath() + "</h1>");
@@ -55,7 +55,46 @@ public class ProductManagementServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        response.setContentType("text/html;charset=UTF-8");
+        String action = request.getParameter("action");
+        String display = "/products.jsp";
+        String add = "/product.jsp";
+        String delete = "/confirmDelete.jsp";
+        if (action == null || !action.equals("displayProducts")
+            || !action.equals("addProduct") || !action.equals("displayProduct")
+            || !action.equals("deleteProduct")) {
+                    try (PrintWriter out = response.getWriter()) {
+                        /* TODO output your page here. You may use following sample code. */
+                        out.println("<!DOCTYPE html>");
+                        out.println("<html>");
+                        out.println("<head>");
+                        out.println("<title>Servlet MembershipControllerServlet</title>");
+                        out.println("</head>");
+                        out.println("<body>");
+                        out.println("<h1>Servlet MembershipControllerServlet at " + request.getContextPath() + "</h1>");
+                        out.println("<p>Action is " + action + "</p>");
+                        out.println("<p>Error! The action parameter is required, only signup value is valid</p>");
+                        out.println("</body>");
+                        out.println("</html>");
+                    }
+        } else if (action.equals("displayProducts")) {
+            getServletContext().getRequestDispatcher(display).forward(request, response);
+            doPost(request, response);
+
+        } else if (action.equals("addProduct")) {
+            getServletContext().getRequestDispatcher(add).forward(request, response);
+            doPost(request, response);
+
+        } else if (action.equals("displayProduct")) {
+            getServletContext().getRequestDispatcher(add).forward(request, response);
+            doPost(request, response);
+
+        } else if (action.equals("deleteProduct")) {
+            getServletContext().getRequestDispatcher(delete).forward(request, response);
+            doPost(request, response);
+
+        }
+
     }
 
     /**
