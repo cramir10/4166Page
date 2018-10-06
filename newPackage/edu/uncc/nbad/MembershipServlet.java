@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+package edu.uncc.nbad;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -10,7 +11,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
- 
+import edu.uncc.nbad.User;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -96,6 +98,40 @@ public class MembershipServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+        String message;
+        String firstName = request.getParameter("firstName");
+        String lastName = request.getParameter("lastName");
+        String email = request.getParameter("email");
+        String password = request.getParameter("password");
+        
+        if(firstName.isEmpty() || lastName.isEmpty() || email.isEmpty() || password.isEmpty()) {
+            message = "Fill out all fields<br>";
+            if(firstName.isEmpty()) {
+                message += "firstName, ";
+            }
+            if(lastName.isEmpty()) {
+                message += "lastName, ";
+            }
+            if(email.isEmpty()) {
+                message += "email, ";
+            }
+            if(password.isEmpty()) {
+                message += "password, ";
+            }
+        }
+        else {
+            User u = new User();
+            u.setFirstName(firstName);
+            u.setLastName(lastName);
+            u.setEmail(email);
+            u.setPassword(password);
+            
+            HttpSession session = request.getSession();
+            session.setAttribute("UserData", u);
+            
+            String url = "/products.jsp";
+            getServletContext().getRequestDispatcher(url).forward(request,response);
+        }
     }
 
     /**

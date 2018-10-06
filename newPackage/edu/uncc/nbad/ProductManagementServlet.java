@@ -12,7 +12,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
+import edu.uncc.nbad.Product;
+import javax.servlet.http.HttpSession;
 /**
  *
  * @author Axelarator
@@ -110,6 +111,35 @@ public class ProductManagementServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+        String message;
+        String code = request.getParameter("code");
+        String description = request.getParameter("description");
+        double price = request.getParameter("price");
+        
+        if(code.isEmpty() || description.isEmpty() || price.isEmpty()) {
+            message = "Fill out all fields<br>";
+            if(code.isEmpty()) {
+                message += "code, ";
+            }
+            if(description.isEmpty()) {
+                message += "description, ";
+            }
+            if(price.isEmpty()) {
+                message += "price, ";
+            }
+        }
+        else {
+            Product p = new Product();
+            p.setCode(code);
+            p.setDescription(description);
+            p.setPrice(price);
+            
+            HttpSession session = request.getSession();
+            session.setAttribute("UserData", p);
+            
+            String url = "/products.jsp";
+            getServletContext().getRequestDispatcher(url).forward(request,response);
+        }
     }
 
     /**
