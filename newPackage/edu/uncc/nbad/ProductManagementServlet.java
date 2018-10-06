@@ -12,7 +12,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import edu.uncc.nbad.Product;
 import javax.servlet.http.HttpSession;
 /**
  *
@@ -114,7 +113,8 @@ public class ProductManagementServlet extends HttpServlet {
         String message;
         String code = request.getParameter("code");
         String description = request.getParameter("description");
-        double price = request.getParameter("price");
+        String price = request.getParameter("price");
+        double price2 = Double.parseDouble(price);
         
         if(code.isEmpty() || description.isEmpty() || price.isEmpty()) {
             message = "Fill out all fields<br>";
@@ -132,7 +132,7 @@ public class ProductManagementServlet extends HttpServlet {
             Product p = new Product();
             p.setCode(code);
             p.setDescription(description);
-            p.setPrice(price);
+            p.setPrice(price2);
             
             HttpSession session = request.getSession();
             session.setAttribute("UserData", p);
