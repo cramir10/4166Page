@@ -9,6 +9,7 @@
             <web-module-additional-libraries/>
             <source-roots>
                 <root id="src.dir"/>
+                <root id="src.newPackage.dir"/>
             </source-roots>
             <test-roots>
                 <root id="test.src.dir"/>
