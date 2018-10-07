@@ -103,6 +103,16 @@ public class MembershipServlet extends HttpServlet {
         String lastName = request.getParameter("lastName");
         String email = request.getParameter("email");
         String password = request.getParameter("password");
+        HttpSession session = request.getSession();
+        User user = (session != null) ? (User) session.getAttribute("user") : null;
+        String url = "/products.jsp";
+        
+        if(user == null) {
+            response.sendRedirect("/login.jsp");
+        }
+        else
+            getServletContext().getRequestDispatcher(url).forward(request,response);
+             
         
         if(firstName.isEmpty() || lastName.isEmpty() || email.isEmpty() || password.isEmpty()) {
             message = "Fill out all fields<br>";
@@ -126,10 +136,10 @@ public class MembershipServlet extends HttpServlet {
             u.setEmail(email);
             u.setPassword(password);
             
-            HttpSession session = request.getSession();
+            
             session.setAttribute("UserData", u);
             
-            String url = "/products.jsp";
+           
             getServletContext().getRequestDispatcher(url).forward(request,response);
         }
     }
