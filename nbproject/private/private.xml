@@ -2,6 +2,19 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+<<<<<<< HEAD
         <group/>
+=======
+        <group>
+            <file>file:/E:/NetBeansProjects/4166Page/web/index_1.html</file>
+            <file>file:/E:/NetBeansProjects/4166Page/newPackage/edu/uncc/nbad/ProductManagementServlet.java</file>
+            <file>file:/E:/NetBeansProjects/4166Page/newPackage/edu/uncc/nbad/MembershipServlet.java</file>
+            <file>file:/E:/NetBeansProjects/4166Page/newPackage/edu/uncc/nbad/User.java</file>
+            <file>file:/E:/NetBeansProjects/4166Page/newPackage/edu/uncc/nbad/Product.java</file>
+            <file>file:/E:/NetBeansProjects/4166Page/web/products.jsp</file>
+            <file>file:/E:/NetBeansProjects/4166Page/web/product.jsp</file>
+            <file>file:/E:/NetBeansProjects/4166Page/web/index.jsp</file>
+        </group>
+>>>>>>> d16a87f4f035ad0b6e496257a4be27c807b5e0d9
     </open-files>
 </project-private>

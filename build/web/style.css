@@ -58,7 +58,7 @@ table, tr,td,th {
 }
 
 #signup input[type="submit" ]{
-    margin-left: 19.5%;
+  
 }
 
 /*   login            */
@@ -74,5 +74,5 @@ table, tr,td,th {
 }
 
 #login input[type="submit" ]{
-    margin-left: 20.5%;
+    
 }
