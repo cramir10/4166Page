@@ -13,8 +13,10 @@
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
+        
+        
         <h1 id="head">Login</h1>
-        <form id="login" action="products.jsp" method="post">
+        <form id="login" action="Membership?action=login" method="post">
             <div> <label> Username: </label><input type="text" name="user"></div>
            <div> <label> Password: </label><input type="password" name="pass"></div>
             <input type="submit" value="Login">

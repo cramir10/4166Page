@@ -13,6 +13,13 @@
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
+        
+        <%
+            String ID = (String) session.getAttribute("ID");
+            if(ID.equals("")|| ID.equals(null)){
+                response.sendRedirect("login.jsp");
+            }
+        %>
         <p>User <a title="logout" href="login.jsp">Logout</a></p>
         <h1 id="head">Products</h1>
         <table>
