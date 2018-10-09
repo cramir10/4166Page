@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -117,6 +118,8 @@ public class ProductManagementServlet extends HttpServlet {
         String description = request.getParameter("description");
         String price = request.getParameter("price");
         double price2 = Double.parseDouble(price);
+        HttpSession session = request.getSession();            
+
         
         if(code.isEmpty() || description.isEmpty() || price.isEmpty()) {
             message = "Fill out all fields<br>";
@@ -135,9 +138,22 @@ public class ProductManagementServlet extends HttpServlet {
             p.setCode(code);
             p.setDescription(description);
             p.setPrice(price2);
-            HttpSession session = request.getSession();            
             String url = "/products.jsp";
             getServletContext().getRequestDispatcher(url).forward(request,response);
+//            Cookie c = new Cookie("code", code);
+//            Cookie d = new Cookie("description", description);
+//            Cookie pr = new Cookie("price", price);
+//            response.addCookie(c); 
+//            response.addCookie(d); 
+//            response.addCookie(pr);
+//            Cookie[] cookies = request.getCookies();
+//            String cookieCode = "code";
+//            String cookieDes = "description";
+//            String cookiePrice = "price";
+//            for(Cookie cookie : cookies) {
+//                if(cookieCode.equals(cookie.getCode()))
+//                    cookieDes = cookie.getDescription();
+//            }
         }
     }
 

@@ -21,7 +21,7 @@
             <div><label>Price: </label><input type="text" name="price"></div>
             <div id="buttons">
                 <input type="submit" class="productButton" value="Update Product">
-                <button class="productButton" onClick="location.href='products.jsp'" >View Products</button>
+                <a class="productButton" href="products.jsp" >View Products</a>
             </div>
         </form>
         
