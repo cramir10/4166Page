@@ -13,13 +13,17 @@
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
-        
+    
         <%
-            String ID = (String) session.getAttribute("ID");
-            if(ID.equals("")|| ID.equals(null)){
+            HttpSession s = request.getSession(false);
+            if(!s.equals(""))
+                //testing if the session exists
+                out.print("Session ID: " + session.getId());
+            else
                 response.sendRedirect("login.jsp");
-            }
+                session.invalidate();
         %>
+        
         <p>User <a title="logout" href="login.jsp">Logout</a></p>
         <h1 id="head">Products</h1>
         <table>
@@ -59,7 +63,7 @@
                 <td><a title="Delete" href="confirmDelete.jsp">Delete</a></td>
             </tr>
         </table>
-        <button class="productButton" id="button_add_product" onClick="location.href='product.jsp'" >Add Product</button>
+        <a class="productButton" id="button_add_product" href="product.jsp" >Add Product</a>
         
     </body>
 </html>

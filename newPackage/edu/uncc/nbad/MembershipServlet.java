@@ -7,11 +7,11 @@ package edu.uncc.nbad;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import static java.lang.System.out;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import edu.uncc.nbad.User;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpSession;
@@ -22,8 +22,8 @@ import javax.servlet.http.HttpSession;
  */
 public class MembershipServlet extends HttpServlet {
 
-    String username = "jerry";
-    String password = "1234";
+//    String username = "jerry";
+//    String password = "asdfasdf";
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -107,33 +107,65 @@ public class MembershipServlet extends HttpServlet {
         String lastName = request.getParameter("lastName");
         String email = request.getParameter("email");
         String password = request.getParameter("password");
-        
+        String username = request.getParameter("username");
         String action = request.getParameter("action");
-        if(action.equals("login")){
-            String username = request.getParameter("username");
-
-        if (this.username.equals(username) && this.password.equals(password)) {
-            //get the old session and invalidate
-            HttpSession oldSession = request.getSession(false);
-            if (oldSession != null) {
-                oldSession.invalidate();
+        HttpSession session = request.getSession();
+//        if(action.equals("login")){
+//            String username = request.getParameter("username");
+        if(password.isEmpty() || username.isEmpty()) {
+            message = "Fill out all fields<br>";
+            
+            if(password.isEmpty()) {
+                message += "Password, ";
             }
-            //generate a new session
-            HttpSession newSession = request.getSession(true);
-
-            //setting session to expiry in 5 mins
-            newSession.setMaxInactiveInterval(5*60);
-            
-            newSession.setAttribute("ID", request.getSession().getId());
-            
-            response.sendRedirect("products.jsp");
-        } else {
-             RequestDispatcher rd = getServletContext().getRequestDispatcher("/login.jsp");
-             PrintWriter out = response.getWriter();
-             out.println("<font color=red>Either username or password is wrong.</font>");
-             rd.include(request, response);
+            if(username.isEmpty()) {
+                message += "Username, ";
             }
         }
+        else {
+            User u = new User();
+            u.setFirstName(firstName);
+            u.setLastName(lastName);
+            u.setEmail(email);
+            u.setPassword(password);
+            u.setUserName(username);
+            session.setAttribute("UserData", u);
+            //just creating cookies to see how it works
+            Cookie c = new Cookie("username", username);
+            response.addCookie(c);
+        }
+        //if session isn't null, go to products.jsp
+        if(session != null) {
+                String url = "/products.jsp";
+                getServletContext().getRequestDispatcher(url).forward(request,response);
+        }
+        //if session is null, go to login
+        else {
+                request.getRequestDispatcher("login.jsp").include(request, response);
+            }
+    }
+//        if (username.equals(username) && password.equals(password)) {
+//            //get the old session and invalidate
+//            HttpSession oldSession = request.getSession();
+//            if (oldSession != null) {
+//                oldSession.invalidate();
+//            }
+//            //generate a new session
+//            HttpSession newSession = request.getSession(true);
+//
+//            //setting session to expiry in 5 mins
+//            newSession.setMaxInactiveInterval(5*60);
+//            
+//            newSession.setAttribute("ID", request.getSession().getId());
+//            
+//            response.sendRedirect("products.jsp");
+//        } else {
+//             RequestDispatcher rd = getServletContext().getRequestDispatcher("/login.jsp");
+//             PrintWriter out = response.getWriter();
+//             out.println("<font color=red>Either username or password is wrong.</font>");
+//             rd.include(request, response);
+//            }
+//        }
         /*
         HttpSession session = request.getSession();
         User user = (session != null) ? (User) session.getAttribute("user") : null;
@@ -175,8 +207,6 @@ public class MembershipServlet extends HttpServlet {
             getServletContext().getRequestDispatcher(url).forward(request,response);
         }
         */
-    }
-
     /**
      * Returns a short description of the servlet.
      *

@@ -15,11 +15,11 @@
     <body>
         <h1>Sign-up Form</h1>
         <form id="signup" action="products.jsp" method="post">
-            <div> <label>First Name: </label><input type="text" name="first"></div> 
-            <div> <label> Last Name: </label><input type="text" name="last"></div>
-            <div> <label>Email: </label><input type="email" name="email"></div>
-            <div> <label>Username: </label><input type="text" name="user"></div>
-            <div> <label> Password: </label><input type="password" name="pass" minlength="8"></div>
+            <div> <label>First Name: </label><input type="text" name="first" required=""></div> 
+            <div> <label> Last Name: </label><input type="text" name="last" required></div>
+            <div> <label>Email: </label><input type="email" name="email" required></div>
+            <div> <label>Username: </label><input type="text" name="user" required></div>
+            <div> <label> Password: </label><input type="password" name="pass" minlength="8" required></div>
             <input type="submit" value="Sign Up" >
         </form>
         

@@ -8,6 +8,7 @@ package edu.uncc.nbad;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -134,10 +135,7 @@ public class ProductManagementServlet extends HttpServlet {
             p.setCode(code);
             p.setDescription(description);
             p.setPrice(price2);
-            
-            HttpSession session = request.getSession();
-            session.setAttribute("UserData", p);
-            
+            HttpSession session = request.getSession();            
             String url = "/products.jsp";
             getServletContext().getRequestDispatcher(url).forward(request,response);
         }
