@@ -22,8 +22,8 @@ import javax.servlet.http.HttpSession;
  */
 public class MembershipServlet extends HttpServlet {
 
-//    String username = "jerry";
-//    String password = "asdfasdf";
+    String username = "jerry";
+    String password = "test";
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -66,9 +66,10 @@ public class MembershipServlet extends HttpServlet {
         String action = request.getParameter("action");
         String log = "/login.jsp";
         String sign = "/signup.jsp";
+        HttpSession session = request.getSession();
+        /*
         if (action == null || !action.equals("signup") || !action.equals("login")) {       
             try (PrintWriter out = response.getWriter()) {
-                /* TODO output your page here. You may use following sample code. */
                 out.println("<!DOCTYPE html>");
                 out.println("<html>");
                 out.println("<head>");
@@ -81,7 +82,12 @@ public class MembershipServlet extends HttpServlet {
                 out.println("</body>");
                 out.println("</html>");
             }
-        }
+        }*/
+        if(action.equals("logoff")){
+            session.invalidate();
+            getServletContext().getRequestDispatcher(log).forward(request, response);
+            }
+        
         else if (action.equals("login")) {
             getServletContext().getRequestDispatcher(log).forward(request, response);
         }
@@ -110,40 +116,62 @@ public class MembershipServlet extends HttpServlet {
         String username = request.getParameter("username");
         String action = request.getParameter("action");
         HttpSession session = request.getSession();
-//        if(action.equals("login")){
-//            String username = request.getParameter("username");
-        if(password.isEmpty() || username.isEmpty()) {
-            message = "Fill out all fields<br>";
-            
-            if(password.isEmpty()) {
-                message += "Password, ";
+        
+        if(action.equals("login")){ 
+            if(password.isEmpty() || username.isEmpty()) {
+                message = "Fill out all fields<br>";
+
+                if(password.isEmpty()) {
+                    message += "Password, ";
+                }
+                if(username.isEmpty()) {
+                    message += "Username, ";
+                }
             }
-            if(username.isEmpty()) {
-                message += "Username, ";
+            else {
+                User u = new User();
+                u.setFirstName(firstName);
+                u.setLastName(lastName);
+                u.setEmail(email);
+                u.setPassword(password);
+                u.setUserName(username);
+                session.setAttribute("UserData", u);
+                //just creating cookies to see how it works
+                Cookie c = new Cookie("username", username);
+                response.addCookie(c);
             }
-        }
-        else {
-            User u = new User();
-            u.setFirstName(firstName);
-            u.setLastName(lastName);
-            u.setEmail(email);
-            u.setPassword(password);
-            u.setUserName(username);
-            session.setAttribute("UserData", u);
-            //just creating cookies to see how it works
-            Cookie c = new Cookie("username", username);
-            response.addCookie(c);
-        }
-        //if session isn't null, go to products.jsp
-        if(session != null) {
-                String url = "/products.jsp";
-                getServletContext().getRequestDispatcher(url).forward(request,response);
-        }
-        //if session is null, go to login
-        else {
-                request.getRequestDispatcher("login.jsp").include(request, response);
+            //if session isn't null, go to products.jsp
+            if(session != null) {
+                    String url = "/products.jsp";
+                    getServletContext().getRequestDispatcher(url).forward(request,response);
             }
-    }
+            //if session is null, go to login
+            else {
+                    request.getRequestDispatcher("login.jsp").include(request, response);
+                }
+        }  
+    }// end post
+
+    /**
+     * Returns a short description of the servlet.
+     *
+     * @return a String containing servlet description
+     */
+    @Override
+    public String getServletInfo() {
+        return "Short description";
+    }// </editor-fold>
+
+}
+
+
+
+
+
+
+
+
+
 //        if (username.equals(username) && password.equals(password)) {
 //            //get the old session and invalidate
 //            HttpSession oldSession = request.getSession();
@@ -207,14 +235,3 @@ public class MembershipServlet extends HttpServlet {
             getServletContext().getRequestDispatcher(url).forward(request,response);
         }
         */
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
-
-}

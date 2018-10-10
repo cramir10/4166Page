@@ -16,15 +16,16 @@
     
         <%
             HttpSession s = request.getSession(false);
-            if(!s.equals(""))
+            if(s!=null)
                 //testing if the session exists
                 out.print("Session ID: " + session.getId());
-            else
+            else{
                 response.sendRedirect("login.jsp");
                 session.invalidate();
+            }
         %>
         
-        <p>User <a title="logout" href="login.jsp">Logout</a></p>
+        <p>User <a title="logout" href="Membership?action=logoff">Logout</a></p>
         <h1 id="head">Products</h1>
         <table>
             <tr id="heading">
