@@ -13,6 +13,9 @@
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
+        <%
+            out.print("Session ID: " + session.getId());
+        %>
         
         
         <h1 id="head">Login</h1>

@@ -14,16 +14,11 @@
     </head>
     <body>
     
-        <%
-            HttpSession s = request.getSession(false);
-            if(s!=null)
-                //testing if the session exists
-                out.print("Session ID: " + session.getId());
-            else{
+        <%--
+            if(session == null) {
                 response.sendRedirect("login.jsp");
-                session.invalidate();
             }
-        %>
+        --%>
         
         <p>User <a title="logout" href="Membership?action=logoff">Logout</a></p>
         <h1 id="head">Products</h1>

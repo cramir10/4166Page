@@ -118,7 +118,7 @@ public class ProductManagementServlet extends HttpServlet {
         String description = request.getParameter("description");
         String price = request.getParameter("price");
         double price2 = Double.parseDouble(price);
-        HttpSession session = request.getSession();            
+//        HttpSession session = request.getSession();            
 
         
         if(code.isEmpty() || description.isEmpty() || price.isEmpty()) {

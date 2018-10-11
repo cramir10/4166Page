@@ -13,6 +13,11 @@
         <link rel="stylesheet" href="style.css"> 
     </head>
     <body>
+        <%
+            session.invalidate();
+            out.print("Session ID: " + session.getId());
+            
+        %>
         <h1 id="head">Product Management</h1>
         <a title="View Products" href="products.jsp">View Products</a>
     </body>

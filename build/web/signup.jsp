@@ -13,8 +13,13 @@
         <title>Product Management</title>
     </head>
     <body>
+        <%--
+            if(session == null) {
+                response.sendRedirect("login.jsp");
+            }
+        --%>
         <h1>Sign-up Form</h1>
-        <form id="signup" action="products.jsp" method="post">
+        <form id="signup" action="login.jsp" method="post">
             <div> <label>First Name: </label><input type="text" name="first" required=""></div> 
             <div> <label> Last Name: </label><input type="text" name="last" required></div>
             <div> <label>Email: </label><input type="email" name="email" required></div>

@@ -13,7 +13,7 @@
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
-        <p>User <a title="logout" href="login.jsp">Logout</a></p>
+        <p>User <a title="logout" href="Membership?action=logoff">Logout</a></p>
         <h1 id="head">Product</h1>
         <form class="product" action="products.jsp" method="post">
             <div><label>Code: </label><input type="text" name="code"></div>
