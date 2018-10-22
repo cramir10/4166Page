@@ -6,14 +6,12 @@
 package edu.uncc.nbad;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.io.PrintWriter;
-import static java.lang.System.out;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.RequestDispatcher;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpSession;
 
 /**
@@ -62,37 +60,6 @@ public class MembershipServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
             response.setContentType("text/html;charset=UTF-8");
-        String action = request.getParameter("action");
-        String log = "/login.jsp";
-        String sign = "/signup.jsp";
-        /*
-        if (action == null || !action.equals("signup") || !action.equals("login")) {       
-            try (PrintWriter out = response.getWriter()) {
-                out.println("<!DOCTYPE html>");
-                out.println("<html>");
-                out.println("<head>");
-                out.println("<title>Servlet MembershipControllerServlet</title>");            
-                out.println("</head>");
-                out.println("<body>");
-                out.println("<h1>Servlet MembershipControllerServlet at " + request.getContextPath() + "</h1>");
-                out.println("<p>Action is " + action + "</p>");
-                out.println("<p>Error! The action parameter is required, only signup value is valid</p>");
-                out.println("</body>");
-                out.println("</html>");
-            }
-        }*/
-        if(action.equals("logoff")){
-            HttpSession session = request.getSession();
-            session.invalidate();
-            getServletContext().getRequestDispatcher(log).forward(request, response);
-        }
-        
-        if (action.equals("login")) {
-            getServletContext().getRequestDispatcher(log).forward(request, response);
-        }
-        else if (action.equals("signup")) {
-            getServletContext().getRequestDispatcher(sign).forward(request, response);
-        }
     }
 
     /**
@@ -106,47 +73,37 @@ public class MembershipServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //processRequest(request, response);
-        String firstName = request.getParameter("firstName");
-        String lastName = request.getParameter("lastName");
-        String email = request.getParameter("email");
-        String password = request.getParameter("password");
-        String username = request.getParameter("username");
-        String action = request.getParameter("action"); 
-            if(username.equals("asdf")) {
-                User u = new User();
+        HttpSession session = request.getSession(); 
+        String action = request.getParameter("action");
+        switch (action) {
+            case "signup":
+                String firstName = request.getParameter("firstName");
+                String lastName = request.getParameter("lastName");
+                String email = request.getParameter("email");
+                String password = request.getParameter("password");
+                String username = request.getParameter("username");
+                User u = new User(firstName, lastName, email, password, username);
                 u.setFirstName(firstName);
                 u.setLastName(lastName);
                 u.setEmail(email);
                 u.setPassword(password);
                 u.setUserName(username);
-                HttpSession session = request.getSession();
+                ArrayList<User> users = new ArrayList<User>();
+                users.add(u);
                 session.setAttribute("UserData", u);
-                //just creating cookies to see how it works
-                Cookie c = new Cookie("username", username);
-                response.addCookie(c);
-            }
-            else {
-                HttpSession session = request.getSession(false);
-                session.invalidate();
-                request.getRequestDispatcher("login.jsp").include(request, response);
-            }
-            if(action.equals("logoff")) {
-                HttpSession session = request.getSession(false);
+                request.getRequestDispatcher("signup.jsp").include(request, response);
+                break;
+            case "logoff":
                 session.removeAttribute("UserData");
                 session.invalidate();
                 request.getRequestDispatcher("login.jsp").include(request, response);
+                break;
+            default:
+                session.invalidate();
+                request.getRequestDispatcher("login.jsp").include(request, response);
+                break;
+        }
 
-            }
-            //if session isn't null, go to products.jsp
-//            if(session != null) {
-//                    String url = "/products.jsp";
-//                    getServletContext().getRequestDispatcher(url).forward(request,response);
-//            }
-            //if session is null, go to login
-//            else {
-//                    request.getRequestDispatcher("login.jsp").include(request, response);
-//                } 
     }// end post
 
     /**

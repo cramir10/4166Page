@@ -3,7 +3,14 @@
     Created on : Sep 9, 2018, 4:41:58 PM
     Author     : axelarator
 --%>
-
+<!--Validate session before continuing -->
+<%
+    String usertype = (String)session.getAttribute("UserData");
+    if(!session.equals(usertype)) {
+        response.sendRedirect("signup.jsp");
+        return;
+    }
+%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -14,11 +21,7 @@
     </head>
     <body>
     
-        <%--
-            if(session == null) {
-                response.sendRedirect("login.jsp");
-            }
-        --%>
+        
         
         <p>User <a title="logout" href="Membership?action=logoff">Logout</a></p>
         <h1 id="head">Products</h1>

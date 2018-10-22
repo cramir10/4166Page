@@ -3,6 +3,13 @@
     Created on : Sep 9, 2018, 4:42:27 PM
     Author     : axelarator
 --%>
+<%
+    String usertype = (String)session.getAttribute("UserData");
+    if(!session.equals(usertype)) {
+        response.sendRedirect("signup.jsp");
+        return;
+    }
+%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>

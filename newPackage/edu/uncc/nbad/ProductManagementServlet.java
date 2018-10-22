@@ -64,38 +64,30 @@ public class ProductManagementServlet extends HttpServlet {
         String display = "/products.jsp";
         String add = "/product.jsp";
         String delete = "/confirmDelete.jsp";
-        if (action == null || !action.equals("displayProducts")
-            || !action.equals("addProduct") || !action.equals("displayProduct")
-            || !action.equals("deleteProduct")) {
-                    try (PrintWriter out = response.getWriter()) {
-                        /* TODO output your page here. You may use following sample code. */
-                        out.println("<!DOCTYPE html>");
-                        out.println("<html>");
-                        out.println("<head>");
-                        out.println("<title>Servlet MembershipControllerServlet</title>");
-                        out.println("</head>");
-                        out.println("<body>");
-                        out.println("<h1>Servlet MembershipControllerServlet at " + request.getContextPath() + "</h1>");
-                        out.println("<p>Action is " + action + "</p>");
-                        out.println("<p>Error! The action parameter is required, only signup value is valid</p>");
-                        out.println("</body>");
-                        out.println("</html>");
-                    }
-        } else if (action.equals("displayProducts")) {
-            getServletContext().getRequestDispatcher(display).forward(request, response);
-
-        } else if (action.equals("addProduct")) {
-            getServletContext().getRequestDispatcher(add).forward(request, response);
-
-
-        } else if (action.equals("displayProduct")) {
-            getServletContext().getRequestDispatcher(add).forward(request, response);
-
-
-        } else if (action.equals("deleteProduct")) {
-            getServletContext().getRequestDispatcher(delete).forward(request, response);
-
-
+        switch(action) {
+            case "displayProducts":
+                response.sendRedirect(display);
+            case "addProduct":
+                response.sendRedirect(add);
+            case "displayProduct":
+                response.sendRedirect(add);
+            case "deleteProduct":
+                response.sendRedirect(delete);
+            default:
+                try (PrintWriter out = response.getWriter()) {    
+                    out.println("<!DOCTYPE html>");
+                    out.println("<html>");
+                    out.println("<head>");
+                    out.println("<title>Servlet MembershipControllerServlet</title>");
+                    out.println("</head>");
+                    out.println("<body>");
+                    out.println("<h1>Servlet MembershipControllerServlet at " + request.getContextPath() + "</h1>");
+                    out.println("<p>Action is " + action + "</p>");
+                    out.println("<p>Error! The action parameter is required, only signup value is valid</p>");
+                    out.println("</body>");
+                    out.println("</html>");
+                }
+                
         }
 
     }
@@ -118,9 +110,7 @@ public class ProductManagementServlet extends HttpServlet {
         String description = request.getParameter("description");
         String price = request.getParameter("price");
         double price2 = Double.parseDouble(price);
-//        HttpSession session = request.getSession();            
-
-        
+       
         if(code.isEmpty() || description.isEmpty() || price.isEmpty()) {
             message = "Fill out all fields<br>";
             if(code.isEmpty()) {

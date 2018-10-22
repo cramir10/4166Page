@@ -15,6 +15,7 @@ public class User implements Serializable {
         firstName = "";
         lastName = "";
         email = "";
+        password = "";
         username = "";
     }
 
