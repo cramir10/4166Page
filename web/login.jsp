@@ -19,7 +19,7 @@
         
         
         <h1 id="head">Login</h1>
-        <form id="login" action="/membership?action=authenticate" method="post">
+        <form id="login" action="products.jsp" method="post">
             <div> <label> Username: </label><input type="text" name="user" required></div>
            <div> <label> Password: </label><input type="password" name="pass" required></div>
             <input type="submit" value="Login">

@@ -92,7 +92,7 @@ public class MembershipServlet extends HttpServlet {
                 users.add(u);
                 session.setAttribute("loginFlag", true);
                 session.setAttribute("UserData", u);
-                request.getRequestDispatcher("signup.jsp").include(request, response);
+                request.getRequestDispatcher("products.jsp").include(request, response);
                 break;
             case "logoff":
                 session.removeAttribute("UserData");
@@ -101,7 +101,19 @@ public class MembershipServlet extends HttpServlet {
                 request.getRequestDispatcher("login.jsp").include(request, response);
                 break;
             case "login":
-                response.sendRedirect("login.jsp");
+                //get user parameter
+                String uname = request.getParameter("username");
+                User sun = (User) session.getAttribute("UserData");
+                String unamesun = sun.getUserName();
+                if(uname.equals(unamesun)) {
+                    session.setAttribute("loginFlag", true);
+                    //change redirect to products.jsp
+                    response.sendRedirect("products.jsp");
+                }
+                else {                
+                    //if validate is false, move to login
+                    response.sendRedirect("login.jsp");
+                }
                 break;
             case "authenticate":
                 String usernameInDatabase="taz";
