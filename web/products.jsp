@@ -5,8 +5,7 @@
 --%>
 <!--Validate session before continuing -->
 <%
-    boolean flag = (boolean)session.getAttribute("loginFlag");
-    if(!flag) {
+    if(session.getAttribute("loginFlag")== null) {
         response.sendRedirect("signup.jsp");
         return;
     }
