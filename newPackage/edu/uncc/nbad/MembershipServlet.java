@@ -92,13 +92,13 @@ public class MembershipServlet extends HttpServlet {
                 users.add(u);
                 session.setAttribute("loginFlag", true);
                 session.setAttribute("UserData", u);
-                request.getRequestDispatcher("products.jsp").include(request, response);
+                request.getRequestDispatcher("products.jsp").forward(request, response);
                 break;
             case "logoff":
                 session.removeAttribute("UserData");
                 session.removeAttribute("loginFlag");
                 session.invalidate();
-                request.getRequestDispatcher("login.jsp").include(request, response);
+                request.getRequestDispatcher("login.jsp").forward(request, response);
                 break;
             case "login":
                 //get user parameter
@@ -108,8 +108,8 @@ public class MembershipServlet extends HttpServlet {
                 if(uname.equals(unamesun)) {
                     session.setAttribute("loginFlag", true);
                     //change redirect to products.jsp
-                    response.sendRedirect("products.jsp");
-                }
+                    request.getRequestDispatcher("products.jsp").forward(request, response);
+                }   
                 else {                
                     //if validate is false, move to login
                     response.sendRedirect("login.jsp");
