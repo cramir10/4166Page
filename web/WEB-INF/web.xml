@@ -4,9 +4,17 @@
         <servlet-name>MembershipServlet</servlet-name>
         <servlet-class>edu.uncc.nbad.MembershipServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ProductManagementServlet</servlet-name>
+        <servlet-class>edu.uncc.nbad.ProductManagementServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MembershipServlet</servlet-name>
         <url-pattern>/Membership</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProductManagementServlet</servlet-name>
+        <url-pattern>/ProductManagement</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -90,13 +90,22 @@ public class MembershipServlet extends HttpServlet {
                 u.setUserName(username);
                 ArrayList<User> users = new ArrayList<User>();
                 users.add(u);
+                session.setAttribute("loginFlag", true);
                 session.setAttribute("UserData", u);
                 request.getRequestDispatcher("signup.jsp").include(request, response);
                 break;
             case "logoff":
                 session.removeAttribute("UserData");
+                session.removeAttribute("loginFlag");
                 session.invalidate();
                 request.getRequestDispatcher("login.jsp").include(request, response);
+                break;
+            case "login":
+                response.sendRedirect("login.jsp");
+                break;
+            case "authenticate":
+                String usernameInDatabase="taz";
+                String passwordInDatebase = "1234";
                 break;
             default:
                 session.invalidate();

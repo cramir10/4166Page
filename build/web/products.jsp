@@ -5,8 +5,8 @@
 --%>
 <!--Validate session before continuing -->
 <%
-    String usertype = (String)session.getAttribute("UserData");
-    if(!session.equals(usertype)) {
+    boolean flag = (boolean)session.getAttribute("loginFlag");
+    if(!flag) {
         response.sendRedirect("signup.jsp");
         return;
     }
