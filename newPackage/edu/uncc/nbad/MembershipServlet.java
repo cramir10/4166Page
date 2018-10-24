@@ -73,57 +73,63 @@ public class MembershipServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession(); 
-        String action = request.getParameter("action");
-        switch (action) {
-            case "signup":
-                String firstName = request.getParameter("firstName");
-                String lastName = request.getParameter("lastName");
-                String email = request.getParameter("email");
-                String password = request.getParameter("password");
-                String username = request.getParameter("username");
-                User u = new User(firstName, lastName, email, password, username);
-                u.setFirstName(firstName);
-                u.setLastName(lastName);
-                u.setEmail(email);
-                u.setPassword(password);
-                u.setUserName(username);
-                ArrayList<User> users = new ArrayList<User>();
-                users.add(u);
-                session.setAttribute("loginFlag", true);
-                session.setAttribute("UserData", u);
-                request.getRequestDispatcher("products.jsp").include(request, response);
-                break;
-            case "logoff":
-                session.removeAttribute("UserData");
-                session.removeAttribute("loginFlag");
-                session.invalidate();
-                request.getRequestDispatcher("login.jsp").include(request, response);
-                break;
-            case "login":
-                //get user parameter
-                String uname = request.getParameter("username");
-                User sun = (User) session.getAttribute("UserData");
-                String unamesun = sun.getUserName();
-                if(uname.equals(unamesun)) {
-                    session.setAttribute("loginFlag", true);
-                    //change redirect to products.jsp
-                    response.sendRedirect("products.jsp");
-                }
-                else {                
-                    //if validate is false, move to login
-                    response.sendRedirect("login.jsp");
-                }
-                break;
-            case "authenticate":
-                String usernameInDatabase="taz";
-                String passwordInDatebase = "1234";
-                break;
-            default:
-                session.invalidate();
-                request.getRequestDispatcher("login.jsp").include(request, response);
-                break;
-        }
+        //trying to not change seesion ids 
+        HttpSession session = request.getSession(false);
+        if(session == null){
+            session = request.getSession(true);
+            System.out.println(session.getId());
+        }else{}
+        //
+            String action = request.getParameter("action");
+            switch (action) {
+                case "signup":
+
+                    String firstName = request.getParameter("firstName");
+                    String lastName = request.getParameter("lastName");
+                    String email = request.getParameter("email");
+                    String password = request.getParameter("password");
+                    String username = request.getParameter("username");
+                    User u = new User(firstName, lastName, email, password, username);
+                    u.setFirstName(firstName);
+                    u.setLastName(lastName);
+                    u.setEmail(email);
+                    u.setPassword(password);
+                    u.setUserName(username);
+                    ArrayList<User> users = new ArrayList<User>();
+                    users.add(u);
+                    session.setAttribute("UserData", u);
+                    getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
+                    break;
+                case "logoff":
+                    System.out.println("in the logoff");
+                    session.removeAttribute("UserData");
+                    session.removeAttribute("loginFlag");
+                    session.invalidate();
+                    response.sendRedirect("/login.jsp");
+                    break;
+                case "login":
+                    //get user parameter
+                    String uname = request.getParameter("username");
+                    System.out.println(uname);
+                    User sun = (User) session.getAttribute("UserData");
+                    String unamesun = sun.getUserName();
+                    System.out.println(unamesun);
+                    //check if user input matches a signed up user
+                    if(uname.equals(unamesun)) {
+                        // set the session flag
+                        session.setAttribute("loginFlag", true);
+                        //forward to products.jsp
+                        getServletContext().getRequestDispatcher("/products.jsp").forward(request, response);
+                    }
+                    else {                
+                        //if validate is false, move to login
+                        response.sendRedirect("login.jsp");
+                    }
+                    break;
+                default:
+                    System.out.println("in default");
+                    break;
+            }
 
     }// end post
 

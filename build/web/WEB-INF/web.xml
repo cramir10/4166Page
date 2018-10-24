@@ -10,11 +10,11 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>MembershipServlet</servlet-name>
-        <url-pattern>/Membership</url-pattern>
+        <url-pattern>/membership</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ProductManagementServlet</servlet-name>
-        <url-pattern>/ProductManagement</url-pattern>
+        <url-pattern>/productManagement</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

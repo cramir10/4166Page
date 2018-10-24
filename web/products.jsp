@@ -5,7 +5,7 @@
 --%>
 <!--Validate session before continuing -->
 <%
-    if(session.getAttribute("UserData")== null) {
+    if(session.getAttribute("loginFlag")== null) {
         response.sendRedirect("signup.jsp");
         return;
     }
@@ -19,6 +19,11 @@
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
+        <%
+            session.invalidate();
+            out.print("Session ID: " + session.getId());
+            
+        %>
     
         
         
