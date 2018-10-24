@@ -4,7 +4,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
 
-public final class login_jsp extends org.apache.jasper.runtime.HttpJspBase
+public final class signup_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
 
   private static final JspFactory _jspxFactory = JspFactory.getDefaultFactory();
@@ -48,25 +48,27 @@ public final class login_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("<html>\r\n");
       out.write("    <head>\r\n");
       out.write("        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\r\n");
-      out.write("        <title>Product Management</title>\r\n");
       out.write("        <link rel=\"stylesheet\" href=\"style.css\">\r\n");
+      out.write("        <title>Product Management</title>\r\n");
       out.write("    </head>\r\n");
       out.write("    <body>\r\n");
       out.write("        ");
 
+            session.invalidate();
             out.print("Session ID: " + session.getId());
+            
         
       out.write("\r\n");
-      out.write("        \r\n");
-      out.write("        \r\n");
-      out.write("        <h1 id=\"head\">Login</h1>\r\n");
-      out.write("        <form id=\"login\" action=\"/4166Page/membership?action=login\" method=\"post\">\r\n");
-      out.write("            <div> <label> Username: </label><input type=\"text\" name=\"user\" required></div>\r\n");
-      out.write("           <div> <label> Password: </label><input type=\"password\" name=\"pass\" required></div>\r\n");
-      out.write("            <input type=\"submit\" value=\"Login\">\r\n");
+      out.write("        <h1>Sign-up Form</h1>\r\n");
+      out.write("        <form id=\"signup\" action=\"/4166Page/membership?action=signup\" method=\"post\">\r\n");
+      out.write("            <div> <label>First Name: </label><input type=\"text\" name=\"first\" required=\"\"></div> \r\n");
+      out.write("            <div> <label> Last Name: </label><input type=\"text\" name=\"last\" required></div>\r\n");
+      out.write("            <div> <label>Email: </label><input type=\"email\" name=\"email\" required></div>\r\n");
+      out.write("            <div> <label>Username: </label><input type=\"text\" name=\"user\" required></div>\r\n");
+      out.write("            <div> <label> Password: </label><input type=\"password\" name=\"pass\" minlength=\"8\" required></div>\r\n");
+      out.write("            <input type=\"submit\" value=\"Sign Up\" >\r\n");
       out.write("        </form>\r\n");
       out.write("        \r\n");
-      out.write("        <a href=\"signup.jsp\">New user? Click here to register</a>   \r\n");
       out.write("    </body>\r\n");
       out.write("</html>\r\n");
     } catch (Throwable t) {

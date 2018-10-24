@@ -20,6 +20,9 @@ import javax.servlet.http.HttpSession;
  */
 public class MembershipServlet extends HttpServlet {
 
+    //fields
+    ArrayList<User> users = new ArrayList<User>(1000);
+    HttpSession session = null;
     
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -83,21 +86,19 @@ public class MembershipServlet extends HttpServlet {
             String action = request.getParameter("action");
             switch (action) {
                 case "signup":
-
-                    String firstName = request.getParameter("firstName");
-                    String lastName = request.getParameter("lastName");
+                    String firstName = request.getParameter("first");
+                    String lastName = request.getParameter("last");
                     String email = request.getParameter("email");
-                    String password = request.getParameter("password");
-                    String username = request.getParameter("username");
+                    String password = request.getParameter("pass");
+                    String username = request.getParameter("user");
                     User u = new User(firstName, lastName, email, password, username);
                     u.setFirstName(firstName);
                     u.setLastName(lastName);
                     u.setEmail(email);
                     u.setPassword(password);
                     u.setUserName(username);
-                    ArrayList<User> users = new ArrayList<User>();
-                    users.add(u);
-                    session.setAttribute("UserData", u);
+                    this.users.add(u);
+                    request.setAttribute("UserData", u);
                     getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
                     break;
                 case "logoff":
@@ -109,14 +110,13 @@ public class MembershipServlet extends HttpServlet {
                     break;
                 case "login":
                     //get user parameter
-                    String uname = request.getParameter("username");
+                    String uname = request.getParameter("user");
                     System.out.println(uname);
-                    User sun = (User) session.getAttribute("UserData");
-                    String unamesun = sun.getUserName();
-                    System.out.println(unamesun);
+                    String unameFromArrayList = this.users.get(0).getUserName();
+                    System.out.println(unameFromArrayList);
                     //check if user input matches a signed up user
-                    if(uname.equals(unamesun)) {
-                        // set the session flag
+                    if(uname.equals(unameFromArrayList)) {
+                        //
                         session.setAttribute("loginFlag", true);
                         //forward to products.jsp
                         getServletContext().getRequestDispatcher("/products.jsp").forward(request, response);
