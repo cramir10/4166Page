@@ -6,9 +6,12 @@
 <!--Validate session before continuing -->
 <%
     if(session.getAttribute("loginFlag")== null) {
+
         response.sendRedirect("signup.jsp");
         return;
     }
+    out.print("Session ID: " + session.getAttribute("loginFlag"));
+
 %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
