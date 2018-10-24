@@ -97,8 +97,9 @@ public class MembershipServlet extends HttpServlet {
                     u.setEmail(email);
                     u.setPassword(password);
                     u.setUserName(username);
-                    this.users.add(u);
+                    
                     request.setAttribute("UserData", u);
+                    this.users.add(u);
                     getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
                     break;
                 case "logoff":
