@@ -21,6 +21,9 @@ import javax.servlet.http.HttpSession;
  */
 public class ProductManagementServlet extends HttpServlet {
 
+    
+    ArrayList<Product> products = new ArrayList<Product>(1000);
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -60,36 +63,6 @@ public class ProductManagementServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String action = request.getParameter("action");
-        String display = "/products.jsp";
-        String add = "/product.jsp";
-        String delete = "/confirmDelete.jsp";
-        switch(action) {
-            case "displayProducts":
-                response.sendRedirect(display);
-            case "addProduct":
-                response.sendRedirect(add);
-            case "displayProduct":
-                response.sendRedirect(add);
-            case "deleteProduct":
-                response.sendRedirect(delete);
-            default:
-                try (PrintWriter out = response.getWriter()) {    
-                    out.println("<!DOCTYPE html>");
-                    out.println("<html>");
-                    out.println("<head>");
-                    out.println("<title>Servlet MembershipControllerServlet</title>");
-                    out.println("</head>");
-                    out.println("<body>");
-                    out.println("<h1>Servlet MembershipControllerServlet at " + request.getContextPath() + "</h1>");
-                    out.println("<p>Action is " + action + "</p>");
-                    out.println("<p>Error! The action parameter is required, only signup value is valid</p>");
-                    out.println("</body>");
-                    out.println("</html>");
-                }
-                
-        }
-
     }
 
     /**

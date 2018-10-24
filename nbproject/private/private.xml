@@ -3,14 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/trey/Documents/NetBeansProjects/4166page/newPackage/edu/uncc/nbad/MembershipServlet.java</file>
-            <file>file:/C:/Users/trey/Documents/NetBeansProjects/4166page/web/signup.jsp</file>
-            <file>file:/C:/Users/trey/Documents/NetBeansProjects/4166page/newPackage/edu/uncc/nbad/Product.java</file>
-            <file>file:/C:/Users/trey/Documents/NetBeansProjects/4166page/newPackage/edu/uncc/nbad/User.java</file>
-            <file>file:/C:/Users/trey/Documents/NetBeansProjects/4166page/web/products.jsp</file>
-            <file>file:/C:/Users/trey/Documents/NetBeansProjects/4166page/web/login.jsp</file>
-            <file>file:/C:/Users/trey/Documents/NetBeansProjects/4166page/newPackage/edu/uncc/nbad/ProductManagementServlet.java</file>
-            <file>file:/C:/Users/trey/Documents/NetBeansProjects/4166page/web/WEB-INF/web.xml</file>
+            <file>file:/E:/NetBeansProjects/4166Page/newPackage/edu/uncc/nbad/ProductManagementServlet.java</file>
+            <file>file:/E:/NetBeansProjects/4166Page/newPackage/edu/uncc/nbad/MembershipServlet.java</file>
+            <file>file:/E:/NetBeansProjects/4166Page/web/confirmDelete.jsp</file>
+            <file>file:/E:/NetBeansProjects/4166Page/newPackage/edu/uncc/nbad/Product.java</file>
+            <file>file:/E:/NetBeansProjects/4166Page/web/products.jsp</file>
+            <file>file:/E:/NetBeansProjects/4166Page/web/product.jsp</file>
+            <file>file:/E:/NetBeansProjects/4166Page/web/login.jsp</file>
+            <file>file:/E:/NetBeansProjects/4166Page/web/index.jsp</file>
+            <file>file:/E:/NetBeansProjects/4166Page/web/WEB-INF/web.xml</file>
+            <file>file:/E:/NetBeansProjects/4166Page/web/signup.jsp</file>
         </group>
     </open-files>
 </project-private>

@@ -23,14 +23,13 @@
     </head>
     <body>
         <%
-            session.invalidate();
             out.print("Session ID: " + session.getId());
             
         %>
     
         
         
-        <p>User <a title="logout" href="Membership?action=logoff">Logout</a></p>
+        <p>User <a title="logout" href="login.jsp">Logout</a></p>
         <h1 id="head">Products</h1>
         <table>
             <tr id="heading">
@@ -52,7 +51,7 @@
                 <td>Paddlefoot - The first CD</td>
                 <td>$12.95</td>
                 <td><a title="Edit" href="product.jsp">Edit</a></td>
-                <td><a title="Delete" href="confirmDelete.jsp.jsp">Delete</a></td>
+                <td><a title="Delete" href="confirmDelete.jsp">Delete</a></td>
             </tr>
             <tr>
                 <td>pf02</td>

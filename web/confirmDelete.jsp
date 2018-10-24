@@ -4,11 +4,13 @@
     Author     : axelarator
 --%>
 <%
-    String usertype = (String)session.getAttribute("UserData");
-    if(!session.equals(usertype)) {
+    if(session.getAttribute("loginFlag")== null) {
+
         response.sendRedirect("signup.jsp");
         return;
     }
+    out.print("Session ID: " + session.getAttribute("loginFlag"));
+
 %>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

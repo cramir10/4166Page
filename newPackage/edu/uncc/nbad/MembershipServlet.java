@@ -106,8 +106,9 @@ public class MembershipServlet extends HttpServlet {
                     System.out.println("in the logoff");
                     session.removeAttribute("UserData");
                     session.removeAttribute("loginFlag");
-                    session.invalidate();
+                    
                     response.sendRedirect("/login.jsp");
+                    session.invalidate();
                     break;
                 case "login":
                     //get user parameter
