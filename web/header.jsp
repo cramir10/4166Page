@@ -12,6 +12,14 @@
     out.print("Session ID: " + session.getAttribute("loginFlag"));
 
 %>
+<c:choose>
+    <c:when test="${user.firstName != null}">
+        <p>You are currently logged in as: <c:out value="${user.lastName}"/></p>
+    </c:when>
+    <c:otherwise>
+        <c:redirect url="/login.jsp"/>
+    </c:otherwise>
+</c:choose>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -29,3 +37,4 @@
         <input type="hidden" name="action" value="logoff" />
         <a href="#" onclick="this.parentNode.submit()">Logoff</a>
     </form>
+    
