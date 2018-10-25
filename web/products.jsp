@@ -1,4 +1,5 @@
 <%@ include file="header.jsp" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
         <h1 id="head">Products</h1>
         <table>
@@ -9,35 +10,16 @@
                 <th></th>
                 <th></th>
             </tr>
+            <c:forEach var="item" items="${products}">
             <tr>
-                <td>8601</td>
-                <td>86 (the band) - True Life Songs and Pictures</td>
-                <td>$15.95</td>
+                <td><c:out value="${element.code}"/></td>
+                <td><c:out value="${element.description}"/></td>
+                <td><c:out value="${element.price}"/></td>
                 <td><a title="Edit" href="product.jsp">Edit</a></td>
                 <td><a title="Delete" href="confirmDelete.jsp">Delete</a></td>
             </tr>
-            <tr>
-                <td>pf01</td>
-                <td>Paddlefoot - The first CD</td>
-                <td>$12.95</td>
-                <td><a title="Edit" href="product.jsp">Edit</a></td>
-                <td><a title="Delete" href="confirmDelete.jsp">Delete</a></td>
-            </tr>
-            <tr>
-                <td>pf02</td>
-                <td>Paddlefoot - The second CD</td>
-                <td>$14.95</td>
-                <td><a title="Edit" href="product.jsp">Edit</a></td>
-                <td><a title="Delete" href="confirmDelete.jsp">Delete</a></td>
-            </tr>
-            <tr>
-                <td>jr01</td>
-                <td>Joe Rut - Genuine Wood Grained Finish</td>
-                <td>$14.95</td>
-                <td><a title="Edit" href="product.jsp">Edit</a></td>
-                <td><a title="Delete" href="confirmDelete.jsp">Delete</a></td>
-            </tr>
+            </c:forEach>
         </table>
         <a class="productButton" id="button_add_product" href="product.jsp" >Add Product</a>
         
-    <%@ include file="footer.jsp" %>
+<%@ include file="footer.jsp" %>
