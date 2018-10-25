@@ -77,7 +77,7 @@ public class MembershipServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //trying to not change seesion ids 
-        HttpSession session = request.getSession(false);
+        this.session = request.getSession(false);
         if(session == null){
             session = request.getSession(true);
             System.out.println(session.getId());
@@ -106,20 +106,19 @@ public class MembershipServlet extends HttpServlet {
                     System.out.println("in the logoff");
                     session.removeAttribute("UserData");
                     session.removeAttribute("loginFlag");
-                    
-                    response.sendRedirect("/login.jsp");
                     session.invalidate();
+                    response.sendRedirect("/4166Page/login.jsp");
                     break;
                 case "login":
-                    //get user parameter
+                    //get user parameter from form
                     String uname = request.getParameter("user");
-                    System.out.println(uname);
+                    // get users from users list
                     String unameFromArrayList = this.users.get(0).getUserName();
-                    System.out.println(unameFromArrayList);
                     //check if user input matches a signed up user
                     if(uname.equals(unameFromArrayList)) {
-                        //
+                        //set flag and users array
                         session.setAttribute("loginFlag", true);
+                        session.setAttribute("users", this.users);
                         //forward to products.jsp
                         getServletContext().getRequestDispatcher("/products.jsp").forward(request, response);
                     }

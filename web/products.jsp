@@ -1,35 +1,5 @@
-<%-- 
-    Document   : products
-    Created on : Sep 9, 2018, 4:41:58 PM
-    Author     : axelarator
---%>
-<!--Validate session before continuing -->
-<%
-    if(session.getAttribute("loginFlag")== null) {
+<%@ include file="header.jsp" %>
 
-        response.sendRedirect("signup.jsp");
-        return;
-    }
-    out.print("Session ID: " + session.getAttribute("loginFlag"));
-
-%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Product Management</title>
-        <link rel="stylesheet" href="style.css">
-    </head>
-    <body>
-        <%
-            out.print("Session ID: " + session.getId());
-            
-        %>
-    
-        
-        
-        <p>User <a title="logout" href="login.jsp">Logout</a></p>
         <h1 id="head">Products</h1>
         <table>
             <tr id="heading">
@@ -70,5 +40,4 @@
         </table>
         <a class="productButton" id="button_add_product" href="product.jsp" >Add Product</a>
         
-    </body>
-</html>
+    <%@ include file="footer.jsp" %>
