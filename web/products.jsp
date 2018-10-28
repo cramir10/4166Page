@@ -23,12 +23,6 @@
                         <input type="hidden" name="action" value="deleteProduct" />
                         <a href="#" onclick="this.parentNode.submit()">Delete Product</a>
                     </form>
-                <td>
-                    <a title="Edit" href="productManagement?action=displayProducts&productCode=${element.code}">Edit</a>
-                </td>
-                <td>
-                    <a href="productManagement?action=deleteProduct&productCode=${element.code}">Delete</a>
-                </td>
             </tr>
             </c:forEach>
         </table>

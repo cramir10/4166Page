@@ -153,6 +153,18 @@ public class ProductManagementServlet extends HttpServlet {
                     String desc = request.getParameter("description");
                     String priceString = request.getParameter("price"); 
                     
+                    if(code == null || desc == null || priceString == null){
+                            String message = "please fill out all fields!";
+                            request.setAttribute("message",message);
+                            getServletContext().getRequestDispatcher("/product.jsp").forward(request, response);
+                        }
+                    if(code.isEmpty() || desc.isEmpty() || priceString.isEmpty()){
+                        String message = "please fill out all fields!";
+                        request.setAttribute("message",message);
+                        getServletContext().getRequestDispatcher("/product.jsp").forward(request, response);
+                    }
+                    
+                    
                     Product newProduct = new Product();
                     newProduct.setCode(code);
                     newProduct.setDescription(desc);
