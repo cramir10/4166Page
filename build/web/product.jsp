@@ -15,19 +15,9 @@
         
         <form class="product" action="/4166Page/productManagement" method="post">
             <input type="hidden" name="action" value="addProduct" />
-            <div><label>Code: </label>
-                <input type="text" name="code"></div>
-            <div><label>Description: </label>
-                <textarea name="description" cols="50" rows="4"></textarea></div>
-            <div><label>Price: </label>
-                <input type="text" name="price"></div>
-            <div class="rightButton">
-                <input type="hidden" name="action" value="addProduct">          
-                <input type="submit" value="Add Product">
-            </div>
-        </form>
-        <form action="productManagement" method="get">
-            <input type="hidden" name="action" value="displayProducts">
-            <input type="submit" value ="View Products">
+            <div><label>Code: </label><input type="text" name="code"></div>
+            <div><label>Description: </label><textarea name="description" cols="50" rows="4"></textarea></div>
+            <div><label>Price: </label><input type="text" name="price"></div>
+            <a href="#" onclick="this.parentNode.submit()">Add Product</a>
         </form>
 <%@ include file="footer.jsp" %>
