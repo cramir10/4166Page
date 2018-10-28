@@ -28,16 +28,12 @@
                 <input type="submit" value="Add Product">
             </div>
         </form>
-        <form action="productManagement" method="get">
-            <input type="hidden" name="action" value="displayProducts">
-            <input type="submit" value ="View Products">
-        </form>
     </c:if>
     <c:if test="${product != null}">
         <form class="product" action="/4166Page/productManagement" method="post">
             <input type="hidden" name="action" value="editProduct" />
             <div><label>Code: </label><input type="text" name="code" value="${product.code}"></div>
-            <div><label>Description: </label><textarea name="description" cols="50" rows="4" value="${prodect.description}"></textarea></div>
+            <div><label>Description: </label><textarea name="description" cols="50" rows="4">${product.description}</textarea></div>
             <div><label>Price: </label><input type="text" name="price" value="${product.price}"></div>
             <input type="hidden" name="index" value="${index}" />
             <a href="#" onclick="this.parentNode.submit()">Update Product</a>
