@@ -16,8 +16,18 @@
                 <td><c:out value="${element.code}"/></td>
                 <td><c:out value="${element.description}"/></td>
                 <td><c:out value="${element.price}"/></td>
-                <td><a title="Edit" href="product.jsp">Edit</a></td>
-                <td><a title="Delete" href="confirmDelete.jsp">Delete</a></td>
+                <td><a title="Edit" href="productManagement?action=">Edit</a>
+                <form class="product" action="/4166Page/productManagement" method="post">
+                    <input type="hidden" name="action" value="editProduct" />
+                    <a href="#" onclick="this.parentNode.submit()">Edit Product</a>
+                </form>
+                </td>
+                <td><a title="Delete" href="confirmDelete.jsp">Delete</a>
+                <form class="product" action="/4166Page/productManagement" method="post">
+                    <input type="hidden" name="action" value="deleteProduct" />
+                    <a href="#" onclick="this.parentNode.submit()">Delete Product</a>
+                </form>
+                </td>
             </tr>
             </c:forEach>
         </table>
