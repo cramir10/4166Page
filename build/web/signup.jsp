@@ -20,6 +20,9 @@
             out.print("Session ID: " + session.getId());
             
         %>
+        <c:if test="${message != null}">
+            <p><c:out value="${message}"/></p>
+        </c:if>
         <h1>Sign-up Form</h1>
         <form id="signup" action="/4166Page/membership?action=signup" method="post">
             <div> <label>First Name: </label><input type="text" name="first" required=""></div> 

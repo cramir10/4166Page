@@ -99,7 +99,6 @@ public class ProductManagementServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
         //Get action parameter
         String action = request.getParameter("action");
         //If user is not logged in, forward to the login page
@@ -127,7 +126,7 @@ public class ProductManagementServlet extends HttpServlet {
             case "addProduct":
                     //Get the the values to put into the new product
                     String code = request.getParameter("code");
-                    String desc = request.getParameter("desc");
+                    String desc = request.getParameter("description");
                     double price = Double.parseDouble(request.getParameter("price"));
 
                     //Create new product object and put in the values
@@ -159,7 +158,6 @@ public class ProductManagementServlet extends HttpServlet {
                
                 break;
             default:
-                System.err.println("He's dead, Jim!");
                 break;
         }
         

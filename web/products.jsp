@@ -11,7 +11,7 @@
                 <th></th>
                 <th></th>
             </tr>
-            <c:forEach var="item" items="${products}">
+            <c:forEach var="element" items="${sessionScope.products}">
             <tr>
                 <td><c:out value="${element.code}"/></td>
                 <td><c:out value="${element.description}"/></td>

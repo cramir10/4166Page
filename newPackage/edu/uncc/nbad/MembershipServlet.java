@@ -112,7 +112,12 @@ public class MembershipServlet extends HttpServlet {
                     String username = request.getParameter("user");
                     
                     // validation
-                    
+                    if(firstName == null || lastName == null || email == null ||
+                            password == null || username == null){
+                        String message = "please fill out all fields!";
+                        request.setAttribute("message",message);
+                        getServletContext().getRequestDispatcher("/signup.jsp").forward(request, response);
+                    }
                     //set user
                     User u = new User(firstName, lastName, email, password, username);
                     u.setFirstName(firstName);
@@ -125,7 +130,7 @@ public class MembershipServlet extends HttpServlet {
                     
                     session.setAttribute("User", u);
                     session.setAttribute("loginFlag", true);
-                        System.out.println("in the signup " +session.getId());
+                    System.out.println("in the signup " +session.getId());
                     getServletContext().getRequestDispatcher("/products.jsp").forward(request, response);
                     }catch(Exception e){
                         System.out.println(e);
@@ -136,9 +141,6 @@ public class MembershipServlet extends HttpServlet {
                     //get user & password parameter from form
                     String user = request.getParameter("user");
                     String pass = request.getParameter("pass");
-                    System.out.println(user);
-                    System.out.println(pass);
-                    PrintWriter out = response.getWriter();
                     try{
                     
                         User userVar = (User) session.getAttribute("User");
@@ -160,12 +162,11 @@ public class MembershipServlet extends HttpServlet {
                             session.setAttribute("User", userVar);
                             session.setAttribute("loginFlag", true);
                             getServletContext().getRequestDispatcher("/products.jsp").forward(request, response);
-                            
                             }   
                     }catch(Exception e){
                         System.out.println(e);
                         getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
-                        out.print("<p>Incorrect Password or User not found</p>");
+                        
                     }
                     break;
                 default:
@@ -185,30 +186,6 @@ public class MembershipServlet extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
-    
-    private boolean checkLoginCeridentals(String username, String password, ArrayList<User> users){
-        System.out.println("opened the login check");
-        for(User user:users){
-            System.out.println(user.getUserName());
-            System.out.println(user.getPassword());
-            if(user.getUserName().equals(username)){
-                if(user.getPassword().equals(password))
-                    return true;
-            }
-        }
-        return false;
-    }
-    
-    private int getIndex(String username, String password, ArrayList<User> users){
-        for(int i = 0;i<users.size()-1;i++){
-            if(users.get(i).getUserName().equals(username)){
-                if(users.get(i).getPassword().equals(password))
-                    return i;
-            }
-
-        }
-        return -1;
-    }
 }
 
 

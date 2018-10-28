@@ -26,14 +26,12 @@
     <body>
         <p>User <a title="logout" href="Membership?action=logoff">Logout</a></p>
         <h1 id="head">Product</h1>
-        <form class="product" action="products.jsp" method="post">
+        <form class="product" action="/4166Page/productManagement" method="post">
+            <input type="hidden" name="action" value="addProduct" />
             <div><label>Code: </label><input type="text" name="code"></div>
             <div><label>Description: </label><textarea name="description" cols="50" rows="4"></textarea></div>
             <div><label>Price: </label><input type="text" name="price"></div>
-            <div id="buttons">
-                <input type="submit" class="productButton" value="Update Product">
-                <a class="productButton" href="products.jsp" >View Products</a>
-            </div>
+            <a href="#" onclick="this.parentNode.submit()">Add Product</a>
         </form>
         
     </body>
