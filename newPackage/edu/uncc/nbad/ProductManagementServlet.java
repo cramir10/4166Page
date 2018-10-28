@@ -127,18 +127,23 @@ public class ProductManagementServlet extends HttpServlet {
                     //Get the the values to put into the new product
                     String code = request.getParameter("code");
                     String desc = request.getParameter("description");
-                    double price = Double.parseDouble(request.getParameter("price"));
+                    String priceString = request.getParameter("price"); 
 
-                    if(code == null || desc == null || request.getParameter("price") == null){
+                    if(code == null || desc == null || priceString == null){
                             String message = "please fill out all fields!";
                             request.setAttribute("message",message);
                             getServletContext().getRequestDispatcher("/product.jsp").forward(request, response);
                         }
+                    if(code.isEmpty() || desc.isEmpty() || priceString.isEmpty()){
+                        String message = "please fill out all fields!";
+                        request.setAttribute("message",message);
+                        getServletContext().getRequestDispatcher("/product.jsp").forward(request, response);
+                    }
                     //Create new product object and put in the values
                     Product newProduct = new Product();
                     newProduct.setCode(code);
                     newProduct.setDescription(desc);
-                    newProduct.setPrice(price);
+                    newProduct.setPrice(Double.parseDouble(priceString));
                     
                     //get the product list from the session, if any 
                     HttpSession session = request.getSession();
@@ -160,6 +165,7 @@ public class ProductManagementServlet extends HttpServlet {
                     
                     //Redirect back to products page
                     getServletContext().getRequestDispatcher("/products.jsp").forward(request, response);
+                
                
                 break;
             default:
