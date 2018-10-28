@@ -23,7 +23,7 @@
     <body>
         
     <form action="/4166Page/membership" method="get">
-        <input type="hidden" name="action" value="logout" />
+        <input type="hidden" name="action" value="logoff" />
         <a href="#" onclick="this.parentNode.submit()">Logoff</a>
     </form>
     
