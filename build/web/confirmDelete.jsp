@@ -19,8 +19,8 @@
         
         <form class="product" action="/4166Page/productManagement" method="post">
             <input type="hidden" name="action" value="confirmDelete" />
-            <a type="button" onclick="this.parentNode.submit()">Yes</a>
+            <a onclick="this.parentNode.submit()">Yes</a>
         </form>
         
-        <a class="deleteButtons" type="button" action="/4166Page/productManagement?action=displayProducts">No</a>
+        <a class="deleteButtons" action="/4166Page/productManagement?action=displayProducts">No</a>
 <%@ include file="footer.jsp" %>

@@ -159,8 +159,8 @@ public class ProductManagementServlet extends HttpServlet {
                 String code3 = request.getParameter("code");
                 String desc3 = request.getParameter("description");
                 String priceString3 = request.getParameter("price");
-                String index3 = (String) session3.getAttribute("index");
-                products3.remove(Integer.parseInt(index3));
+                int index3 = (int) session3.getAttribute("index");
+                products3.remove(index3);
                 
                 session3.removeAttribute("products");
                 session3.removeAttribute("index");
