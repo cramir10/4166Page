@@ -3,8 +3,7 @@
     Created on : Oct 24, 2018, 8:37:46 PM
     Author     : trey
 --%>
-<% System.out.println("The products page" + session.getId());
-%>
+
 <c:choose>
     <c:when test="${User.firstName != null}">
         <p>You are currently logged in as: <c:out value="${User.lastName}"/></p>
@@ -22,12 +21,9 @@
         <title>Products Website</title>
     </head>
     <body>
-        <%
-            out.print("Session ID: " + session.getId());
-            
-        %>
-    <form action="/4166Page/membership?action=logoff" method="get">
-        <input type="hidden" name="action" value="logoff" />
+        
+    <form action="/4166Page/membership" method="get">
+        <input type="hidden" name="action" value="logout" />
         <a href="#" onclick="this.parentNode.submit()">Logoff</a>
     </form>
     

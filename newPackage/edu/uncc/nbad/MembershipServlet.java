@@ -144,8 +144,10 @@ public class MembershipServlet extends HttpServlet {
                     
                         User userVar = (User) session.getAttribute("User");
                         
-                        if (user.isEmpty()) {
+                        if (user.isEmpty() || pass.isEmpty()) {
                             System.out.println("User = empty");
+                            String message = "please fill out all fields!";
+                            request.setAttribute("message",message);
                             getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
                         } else if (user == null ||!user.equals(userVar.getUserName())) {
                         //user didn't match any user in the text file

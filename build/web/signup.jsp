@@ -15,11 +15,6 @@
         <title>Sign Up</title>
     </head>
     <body>
-        <%
-            session.invalidate();
-            out.print("Session ID: " + session.getId());
-            
-        %>
         <c:if test="${message != null}">
             <p><c:out value="${message}"/></p>
         </c:if>
