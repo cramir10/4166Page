@@ -83,6 +83,16 @@ public class ProductManagementServlet extends HttpServlet {
                 System.out.println("Requested to delete" + request.getParameter("productCode"));
                  // not implemented
                 break;
+            case "editProduct":
+                HttpSession session2 = request.getSession();
+                String productCode = request.getParameter("code");
+                ArrayList<Product> products2 = (ArrayList<Product>) session2.getAttribute("products");
+                
+                int index = getProducetIndex(productCode, products2);
+                session2.setAttribute("product", products2.get(index));
+                session2.setAttribute("index", index);
+                getServletContext().getRequestDispatcher("/product.jsp").forward(request, response);
+                break;
             default:
                 break;
         }
@@ -120,12 +130,22 @@ public class ProductManagementServlet extends HttpServlet {
             case "editProduct":
                // not implemented
                 HttpSession session2 = request.getSession();
-                String productCode = request.getParameter("code");
                 ArrayList<Product> products2 = (ArrayList<Product>) session2.getAttribute("products");
                 
-                int index = getProducetIndex(productCode, products2);
+                String code2 = request.getParameter("code");
+                String desc2 = request.getParameter("description");
+                String priceString2 = request.getParameter("price"); 
+                String index = request.getParameter("index"); 
                 
+                products2.get(Integer.parseInt(index)).setCode(code2);
+                products2.get(Integer.parseInt(index)).setDescription(desc2);
+                products2.get(Integer.parseInt(index)).setPrice(Double.parseDouble(priceString2));
                 
+                session2.removeAttribute("products");
+                session2.removeAttribute("index");
+                session2.removeAttribute("product");
+                session2.setAttribute("products", products2);
+                getServletContext().getRequestDispatcher("/products.jsp").forward(request, response);
                 break;
             
             case "addProduct":

@@ -8,7 +8,9 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="header.jsp" %>
-        
+    
+
+    <c:if test="${product == null}">
         <c:if test="${message != null}">
             <p><c:out value="${message}"/></p>
         </c:if>
@@ -20,4 +22,15 @@
             <div><label>Price: </label><input type="text" name="price"></div>
             <a href="#" onclick="this.parentNode.submit()">Add Product</a>
         </form>
+    </c:if>
+    <c:if test="${product != null}">
+        <form class="product" action="/4166Page/productManagement" method="post">
+            <input type="hidden" name="action" value="editProduct" />
+            <div><label>Code: </label><input type="text" name="code" value="${product.code}"></div>
+            <div><label>Description: </label><textarea name="description" cols="50" rows="4" value="${prodect.description}"></textarea></div>
+            <div><label>Price: </label><input type="text" name="price" value="${product.price}"></div>
+            <input type="hidden" name="index" value="${index}" />
+            <a href="#" onclick="this.parentNode.submit()">Update Product</a>
+        </form>
+    </c:if>
 <%@ include file="footer.jsp" %>
