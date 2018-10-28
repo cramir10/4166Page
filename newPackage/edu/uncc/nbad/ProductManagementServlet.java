@@ -21,8 +21,6 @@ import javax.servlet.http.HttpSession;
  */
 public class ProductManagementServlet extends HttpServlet {
 
-    
-    ArrayList<Product> products = new ArrayList<Product>(1000);
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -62,7 +60,32 @@ public class ProductManagementServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+        //Get action parameter
+        String action = request.getParameter("action");
+      
+        //User is logged in
+        //Make a big decision
+        switch (action) {
+            case "displayProducts":
+                //Call getProducts method to grab products from text file and put inside ArrayList of Products to put into session attribute
+               
+                getServletContext().getRequestDispatcher("/products.jsp").forward(request, response);
+                break;
+            case "addProduct":
+                getServletContext().getRequestDispatcher("/product.jsp").forward(request, response);
+                break;
+
+            case "deleteProduct":
+                //Call getProduct method to grab product from text file and put inside request attribute
+                // not implemented
+                break;
+            case "actuallyDelete":
+                System.out.println("Requested to delete" + request.getParameter("productCode"));
+                 // not implemented
+                break;
+            default:
+                break;
+        }
     }
 
     /**
@@ -77,7 +100,85 @@ public class ProductManagementServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+        //Get action parameter
+        String action = request.getParameter("action");
+        //If user is not logged in, forward to the login page
+        if (action.equals("login")) {
+            
+            HttpSession session = request.getSession();
+            User user = (User)session.getAttribute("user");
+            
+            if (user.getPassword()==null)
+            getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
+            else
+            {
+                getServletContext().getRequestDispatcher("/products.jsp").forward(request, response);
+            }
+        }
+
+        //User is logged in, proceed to updateProduct if appropriate action parameter
+        switch (action) {
+            case "updateProduct":
+            {       // not implemented
+                String productCode = request.getParameter("productCode");
+                
+                    break;
+                    }
+            case "addProduct":
+                    //Get the the values to put into the new product
+                    String code = request.getParameter("code");
+                    String desc = request.getParameter("desc");
+                    double price = Double.parseDouble(request.getParameter("price"));
+
+                    //Create new product object and put in the values
+                    Product newProduct = new Product();
+                    newProduct.setCode(code);
+                    newProduct.setDescription(desc);
+                    newProduct.setPrice(price);
+                    
+                    //get the product list from the session, if any 
+                    HttpSession session = request.getSession();
+                    
+                    ArrayList<Product> products = (ArrayList<Product>) session.getAttribute("products");
+                    
+                    if(products==null)
+                    {
+                        products =  new ArrayList<>();
+                        
+                    }
+                    
+                    //add product to list
+                    products.add(newProduct);
+                    
+                    // replacing the old list in the session by a the new list (that contains the new product we just added)
+                    session.removeAttribute("products");
+                    session.setAttribute("products", products);
+                    
+                    //Redirect back to products page
+                    getServletContext().getRequestDispatcher("/products.jsp").forward(request, response);
+               
+                break;
+            default:
+                System.err.println("He's dead, Jim!");
+                break;
+        }
         
+    }
+
+    /**
+     * Returns a short description of the servlet.
+     *
+     * @return a String containing servlet description
+     */
+    @Override
+    public String getServletInfo() {
+        return "Short description";
+    }// </editor-fold>
+
+}
+
+
+/*
         String message;
         String code = request.getParameter("code");
         String description = request.getParameter("description");
@@ -118,16 +219,4 @@ public class ProductManagementServlet extends HttpServlet {
 //                    cookieDes = cookie.getDescription();
 //            }
         }
-    }
-
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
-
-}
+*/

@@ -1,5 +1,6 @@
-<%@ include file="header.jsp" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ include file="header.jsp" %>
+
 
         <h1 id="head">Products</h1>
         <table>
@@ -20,6 +21,6 @@
             </tr>
             </c:forEach>
         </table>
-        <a class="productButton" id="button_add_product" href="product.jsp" >Add Product</a>
+        <a class="productButton" id="button_add_product" href="/4166Page/productManagement?action=addProduct" >Add Product</a>
         
 <%@ include file="footer.jsp" %>

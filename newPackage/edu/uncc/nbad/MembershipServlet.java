@@ -22,7 +22,6 @@ public class MembershipServlet extends HttpServlet {
 
     //fields
     ArrayList<User> users = new ArrayList<User>(1000);
-    HttpSession session = null;
     
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -62,7 +61,26 @@ public class MembershipServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-            response.setContentType("text/html;charset=UTF-8");
+        //Get action parameter
+        String action = request.getParameter("action");
+
+        //Make a big decision
+        switch (action) {
+            case "login":
+                getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
+                break;
+            case "signup":
+                getServletContext().getRequestDispatcher("/signup.jsp").forward(request, response);
+                break;
+            case "logout":
+                    //not implemented
+                 HttpSession session = request.getSession();
+                 session.invalidate();
+                 response.sendRedirect("/4166Page/login.jsp");
+                break;
+            default:
+                break;
+        }
     }
 
     /**
@@ -77,54 +95,77 @@ public class MembershipServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //trying to not change seesion ids 
-        this.session = request.getSession(false);
-        if(session == null){
-            session = request.getSession(true);
-            System.out.println(session.getId());
-        }else{}
-        //
+        
+            HttpSession session = request.getSession();
+            System.out.println("in the post " + session.getId());
             String action = request.getParameter("action");
+            
             switch (action) {
                 case "signup":
+                    
+                    try{
+                    // users params
                     String firstName = request.getParameter("first");
                     String lastName = request.getParameter("last");
                     String email = request.getParameter("email");
                     String password = request.getParameter("pass");
                     String username = request.getParameter("user");
+                    
+                    // validation
+                    
+                    //set user
                     User u = new User(firstName, lastName, email, password, username);
                     u.setFirstName(firstName);
                     u.setLastName(lastName);
                     u.setEmail(email);
                     u.setPassword(password);
                     u.setUserName(username);
-                    
-                    request.setAttribute("UserData", u);
+                    System.out.println(u.getUserName());
                     this.users.add(u);
-                    getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
-                    break;
-                case "logoff":
-                    System.out.println("in the logoff");
-                    session.removeAttribute("UserData");
-                    session.removeAttribute("loginFlag");
-                    session.invalidate();
-                    response.sendRedirect("/4166Page/login.jsp");
+                    
+                    session.setAttribute("User", u);
+                    session.setAttribute("loginFlag", true);
+                        System.out.println("in the signup " +session.getId());
+                    getServletContext().getRequestDispatcher("/products.jsp").forward(request, response);
+                    }catch(Exception e){
+                        System.out.println(e);
+                        getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
+                    }
                     break;
                 case "login":
-                    //get user parameter from form
-                    String uname = request.getParameter("user");
-                    // get users from users list
-                    String unameFromArrayList = this.users.get(0).getUserName();
-                    //check if user input matches a signed up user
-                    if(uname.equals(unameFromArrayList)) {
-                        //set flag and users array
-                        session.setAttribute("loginFlag", true);
-                        session.setAttribute("users", this.users);
-                        //forward to products.jsp
-                        getServletContext().getRequestDispatcher("/products.jsp").forward(request, response);
-                    }
-                    else {                
-                        //if validate is false, move to login
-                        response.sendRedirect("login.jsp");
+                    //get user & password parameter from form
+                    String user = request.getParameter("user");
+                    String pass = request.getParameter("pass");
+                    System.out.println(user);
+                    System.out.println(pass);
+                    PrintWriter out = response.getWriter();
+                    try{
+                    
+                        User userVar = (User) session.getAttribute("User");
+                        System.out.println(userVar.getUserName());
+                        System.out.println(userVar.getPassword());
+                        if (user.isEmpty()) {
+                            System.out.println("User = empty");
+                            getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
+                        } else if (user == null ||!user.equals(userVar.getUserName())) {
+                        //user didn't match any user in the text file
+                            System.out.println("user != userVar");
+                            getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
+                        } else if (pass == null || !pass.equals(userVar.getPassword())) {
+                            System.out.println("pass != userVar");
+                            getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
+                        } else {
+                            System.out.println("User login");
+                        //valid user, so go to display products
+                            session.setAttribute("User", userVar);
+                            session.setAttribute("loginFlag", true);
+                            getServletContext().getRequestDispatcher("/products.jsp").forward(request, response);
+                            
+                            }   
+                    }catch(Exception e){
+                        System.out.println(e);
+                        getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
+                        out.print("<p>Incorrect Password or User not found</p>");
                     }
                     break;
                 default:
@@ -144,6 +185,30 @@ public class MembershipServlet extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
+    
+    private boolean checkLoginCeridentals(String username, String password, ArrayList<User> users){
+        System.out.println("opened the login check");
+        for(User user:users){
+            System.out.println(user.getUserName());
+            System.out.println(user.getPassword());
+            if(user.getUserName().equals(username)){
+                if(user.getPassword().equals(password))
+                    return true;
+            }
+        }
+        return false;
+    }
+    
+    private int getIndex(String username, String password, ArrayList<User> users){
+        for(int i = 0;i<users.size()-1;i++){
+            if(users.get(i).getUserName().equals(username)){
+                if(users.get(i).getPassword().equals(password))
+                    return i;
+            }
+
+        }
+        return -1;
+    }
 }
 
 

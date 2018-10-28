@@ -12,7 +12,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="style.css">
-        <title>Product Management</title>
+        <title>Sign Up</title>
     </head>
     <body>
         <%

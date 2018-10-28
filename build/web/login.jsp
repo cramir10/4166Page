@@ -11,7 +11,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Product Management</title>
+        <title>Login</title>
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
@@ -27,6 +27,6 @@
             <input type="submit" value="Login">
         </form>
         
-        <a href="signup.jsp">New user? Click here to register</a>   
+        <a href="/4166Page/membership?action=signup">New user? Click here to register</a>   
     </body>
 </html>

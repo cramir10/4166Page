@@ -3,18 +3,11 @@
     Created on : Oct 24, 2018, 8:37:46 PM
     Author     : trey
 --%>
-<%
-    if(session.getAttribute("loginFlag")== null) {
-
-        response.sendRedirect("signup.jsp");
-        return;
-    }
-    out.print("Session ID: " + session.getAttribute("loginFlag"));
-
+<% System.out.println("The products page" + session.getId());
 %>
 <c:choose>
-    <c:when test="${user.firstName != null}">
-        <p>You are currently logged in as: <c:out value="${user.lastName}"/></p>
+    <c:when test="${User.firstName != null}">
+        <p>You are currently logged in as: <c:out value="${User.lastName}"/></p>
     </c:when>
     <c:otherwise>
         <c:redirect url="/login.jsp"/>
@@ -26,14 +19,14 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Web App</title>
+        <title>Products Website</title>
     </head>
     <body>
         <%
             out.print("Session ID: " + session.getId());
             
         %>
-    <form action="/4166Page/membership" method="POST">
+    <form action="/4166Page/membership?action=logoff" method="get">
         <input type="hidden" name="action" value="logoff" />
         <a href="#" onclick="this.parentNode.submit()">Logoff</a>
     </form>
