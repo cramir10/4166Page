@@ -117,12 +117,17 @@ public class ProductManagementServlet extends HttpServlet {
 
         //User is logged in, proceed to updateProduct if appropriate action parameter
         switch (action) {
-            case "updateProduct":
-            {       // not implemented
-                String productCode = request.getParameter("productCode");
+            case "editProduct":
+               // not implemented
+                HttpSession session2 = request.getSession();
+                String productCode = request.getParameter("code");
+                ArrayList<Product> products2 = (ArrayList<Product>) session2.getAttribute("products");
                 
-                    break;
-                    }
+                int index = getProducetIndex(productCode, products2);
+                
+                
+                break;
+            
             case "addProduct":
                     //Get the the values to put into the new product
                     String code = request.getParameter("code");
@@ -184,7 +189,19 @@ public class ProductManagementServlet extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
+    
+    private int getProducetIndex(String code, ArrayList<Product> products){
+        
+        for(int i=0; i<= products.size()-1;i++){
+            if(products.get(i).getCode().compareTo(code)== 0){
+                return i;
+            }   
+        }
+        return -1;
+    }
 }
+
+
 
 
 /*
