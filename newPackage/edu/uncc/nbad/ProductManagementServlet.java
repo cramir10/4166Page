@@ -76,8 +76,14 @@ public class ProductManagementServlet extends HttpServlet {
                 break;
 
             case "deleteProduct":
-                //Call getProduct method to grab product from text file and put inside request attribute
-                // not implemented
+                HttpSession session3 = request.getSession();
+                String productCode3 = request.getParameter("code");
+                ArrayList<Product> products3 = (ArrayList<Product>) session3.getAttribute("products");
+                int index3 = getProductIndex(productCode3, products3);
+                session3.setAttribute("deleteProduct", products3.get(index3));
+                session3.setAttribute("index", index3);
+                getServletContext().getRequestDispatcher("/confirmDelete.jsp").forward(request, response);
+                
                 break;
             case "actuallyDelete":
                 System.out.println("Requested to delete" + request.getParameter("productCode"));
@@ -88,7 +94,7 @@ public class ProductManagementServlet extends HttpServlet {
                 String productCode = request.getParameter("code");
                 ArrayList<Product> products2 = (ArrayList<Product>) session2.getAttribute("products");
                 
-                int index = getProducetIndex(productCode, products2);
+                int index = getProductIndex(productCode, products2);
                 session2.setAttribute("product", products2.get(index));
                 session2.setAttribute("index", index);
                 getServletContext().getRequestDispatcher("/product.jsp").forward(request, response);
@@ -147,7 +153,21 @@ public class ProductManagementServlet extends HttpServlet {
                 session2.setAttribute("products", products2);
                 getServletContext().getRequestDispatcher("/products.jsp").forward(request, response);
                 break;
-            
+            case "confirmDelete":
+                HttpSession session3 = request.getSession();
+                ArrayList<Product> products3 = (ArrayList<Product>) session3.getAttribute("products");
+                String code3 = request.getParameter("code");
+                String desc3 = request.getParameter("description");
+                String priceString3 = request.getParameter("price");
+                String index3 = (String) session3.getAttribute("index");
+                products3.remove(Integer.parseInt(index3));
+                
+                session3.removeAttribute("products");
+                session3.removeAttribute("index");
+                session3.removeAttribute("deleteProduct");
+                session3.setAttribute("products", products3);
+                getServletContext().getRequestDispatcher("/products.jsp").forward(request, response);
+                
             case "addProduct":
                     String code = request.getParameter("code");
                     String desc = request.getParameter("description");
@@ -210,7 +230,7 @@ public class ProductManagementServlet extends HttpServlet {
     }// </editor-fold>
 
     
-    private int getProducetIndex(String code, ArrayList<Product> products){
+    private int getProductIndex(String code, ArrayList<Product> products){
         
         for(int i=0; i<= products.size()-1;i++){
             if(products.get(i).getCode().compareTo(code)== 0){
