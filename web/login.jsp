@@ -15,12 +15,11 @@
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
-        <%
-            out.print("Session ID: " + session.getId());
-        %>
+
         <c:if test="${message != null}">
             <p><c:out value="${message}"/></p>
         </c:if>
+            
         <h1 id="head">Login</h1>
         <form id="login" action="/4166Page/membership?action=login" method="post">
             <div> <label> Username: </label><input type="text" name="user" required></div>

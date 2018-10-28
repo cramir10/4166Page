@@ -11,6 +11,11 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
 
   private static java.util.List<String> _jspx_dependants;
 
+  static {
+    _jspx_dependants = new java.util.ArrayList<String>(1);
+    _jspx_dependants.add("/footer.jsp");
+  }
+
   private org.glassfish.jsp.api.ResourceInjector _jspx_resourceInjector;
 
   public java.util.List<String> getDependants() {
@@ -50,21 +55,18 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("<html>\r\n");
       out.write("    <head>\r\n");
       out.write("        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\r\n");
-      out.write("        <title>Product Management</title>\r\n");
-      out.write("        <link rel=\"stylesheet\" href=\"style.css\"> \r\n");
+      out.write("        <title>Products Website</title>\r\n");
       out.write("    </head>\r\n");
       out.write("    <body>\r\n");
-      out.write("        ");
-
-            session.invalidate();
-            out.print("Session ID: " + session.getId());
-            
-        
-      out.write("\r\n");
       out.write("        <h1 id=\"head\">Product Management</h1>\r\n");
       out.write("        <a title=\"View Products\" href=\"products.jsp\">View Products</a>\r\n");
-      out.write("    </body>\r\n");
-      out.write("</html>\r\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("    </body>\n");
+      out.write("</html>\n");
+      out.write('\r');
+      out.write('\n');
     } catch (Throwable t) {
       if (!(t instanceof SkipPageException)){
         out = _jspx_out;

@@ -8,8 +8,8 @@
                 <th>Code</th>
                 <th>Description</th>
                 <th>Price</th>
-                <th></th>
-                <th></th>
+                <th>&nbsp;</th>
+                <th>&nbsp;</th>
             </tr>
             <c:forEach var="element" items="${sessionScope.products}">
             <tr>
