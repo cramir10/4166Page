@@ -72,7 +72,7 @@ public class MembershipServlet extends HttpServlet {
             case "signup":
                 getServletContext().getRequestDispatcher("/signup.jsp").forward(request, response);
                 break;
-            case "logout":
+            case "logoff":
                     //not implemented
                  HttpSession session = request.getSession();
                  session.invalidate();
