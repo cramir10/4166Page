@@ -11,7 +11,6 @@
 <!DOCTYPE html>
 
 <%@ include file="header.jsp" %>
-        <p>User <a title="logout" href="login.jsp">Logout</a></p>
         <h1 id="head">Are you sure you want to delete this product?</h1>
         <h3 id="deleteProduct">Code: </h3>${deleteProduct.code}<br>
         <h3 id="deleteProduct">Description: </h3>${deleteProduct.description}<br>
@@ -19,8 +18,8 @@
         
         <form class="product" action="/4166Page/productManagement" method="post">
             <input type="hidden" name="action" value="confirmDelete" />
-            <a onclick="this.parentNode.submit()">Yes</a>
+            <a href="#" onclick="this.parentNode.submit()">Yes</a>
         </form>
         
-        <a class="deleteButtons" action="/4166Page/productManagement?action=displayProducts">No</a>
+        <a href="#" class="deleteButtons" action="/4166Page/productManagement?action=displayProducts">No</a>
 <%@ include file="footer.jsp" %>
