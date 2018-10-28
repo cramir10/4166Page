@@ -97,41 +97,40 @@ public class MembershipServlet extends HttpServlet {
         //trying to not change seesion ids 
         
             HttpSession session = request.getSession();
-            System.out.println("in the post " + session.getId());
             String action = request.getParameter("action");
             
             switch (action) {
                 case "signup":
                     
                     try{
-                    // users params
-                    String firstName = request.getParameter("first");
-                    String lastName = request.getParameter("last");
-                    String email = request.getParameter("email");
-                    String password = request.getParameter("pass");
-                    String username = request.getParameter("user");
-                    
-                    // validation
-                    if(firstName == null || lastName == null || email == null ||
-                            password == null || username == null){
-                        String message = "please fill out all fields!";
-                        request.setAttribute("message",message);
-                        getServletContext().getRequestDispatcher("/signup.jsp").forward(request, response);
-                    }
-                    //set user
-                    User u = new User(firstName, lastName, email, password, username);
-                    u.setFirstName(firstName);
-                    u.setLastName(lastName);
-                    u.setEmail(email);
-                    u.setPassword(password);
-                    u.setUserName(username);
-                    System.out.println(u.getUserName());
-                    this.users.add(u);
-                    
-                    session.setAttribute("User", u);
-                    session.setAttribute("loginFlag", true);
-                    System.out.println("in the signup " +session.getId());
-                    getServletContext().getRequestDispatcher("/products.jsp").forward(request, response);
+                        // users params
+                        String firstName = request.getParameter("first");
+                        String lastName = request.getParameter("last");
+                        String email = request.getParameter("email");
+                        String password = request.getParameter("pass");
+                        String username = request.getParameter("user");
+
+                        // validation
+                        if(firstName == null || lastName == null || email == null ||
+                                password == null || username == null){
+                            String message = "please fill out all fields!";
+                            request.setAttribute("message",message);
+                            getServletContext().getRequestDispatcher("/signup.jsp").forward(request, response);
+                        }
+                        //set user
+                        User u = new User(firstName, lastName, email, password, username);
+                        u.setFirstName(firstName);
+                        u.setLastName(lastName);
+                        u.setEmail(email);
+                        u.setPassword(password);
+                        u.setUserName(username);
+                        System.out.println(u.getUserName());
+                        this.users.add(u);
+
+                        session.setAttribute("User", u);
+                        session.setAttribute("loginFlag", true);
+                        System.out.println("in the signup " +session.getId());
+                        getServletContext().getRequestDispatcher("/products.jsp").forward(request, response);
                     }catch(Exception e){
                         System.out.println(e);
                         getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
@@ -144,8 +143,7 @@ public class MembershipServlet extends HttpServlet {
                     try{
                     
                         User userVar = (User) session.getAttribute("User");
-                        System.out.println(userVar.getUserName());
-                        System.out.println(userVar.getPassword());
+                        
                         if (user.isEmpty()) {
                             System.out.println("User = empty");
                             getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);

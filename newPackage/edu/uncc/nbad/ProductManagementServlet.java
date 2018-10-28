@@ -129,6 +129,11 @@ public class ProductManagementServlet extends HttpServlet {
                     String desc = request.getParameter("description");
                     double price = Double.parseDouble(request.getParameter("price"));
 
+                    if(code == null || desc == null || request.getParameter("price") == null){
+                            String message = "please fill out all fields!";
+                            request.setAttribute("message",message);
+                            getServletContext().getRequestDispatcher("/product.jsp").forward(request, response);
+                        }
                     //Create new product object and put in the values
                     Product newProduct = new Product();
                     newProduct.setCode(code);

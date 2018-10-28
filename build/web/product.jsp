@@ -26,6 +26,11 @@
     <body>
         <p>User <a title="logout" href="Membership?action=logoff">Logout</a></p>
         <h1 id="head">Product</h1>
+        
+        <c:if test="${message != null}">
+            <p><c:out value="${message}"/></p>
+        </c:if>
+        
         <form class="product" action="/4166Page/productManagement" method="post">
             <input type="hidden" name="action" value="addProduct" />
             <div><label>Code: </label><input type="text" name="code"></div>
