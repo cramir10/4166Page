@@ -16,17 +16,27 @@
                 <td><c:out value="${element.code}"/></td>
                 <td><c:out value="${element.description}"/></td>
                 <td><c:out value="${element.price}"/></td>
+                
                 <td><a title="Edit" href="productManagement?action=editProduct&amp;code=${element.code}">Edit</a></td>
                 <td>
                     <form class="product" action="/4166Page/productManagement" method="post">
                         <input type="hidden" name="action" value="deleteProduct" />
                         <a href="#" onclick="this.parentNode.submit()">Delete Product</a>
                     </form>
+                <td>
+                    <a title="Edit" href="productManagement?action=displayProducts&productCode=${element.code}">Edit</a>
+                </td>
+                <td>
+                    <a href="productManagement?action=deleteProduct&productCode=${element.code}">Delete</a>
                 </td>
             </tr>
             </c:forEach>
         </table>
-        <a class="productButton" id="button_add_product" href="/4166Page/productManagement?action=addProduct" >Add Product</a>
+<!--        <a class="productButton" id="button_add_product" href="/4166Page/productManagement?action=addProduct" >Add Product</a>-->
+        <form action="productManagement" method="get">
+            <input type="hidden" name="action" value="addProduct">
+            <p><input type="submit" value="Add Product"></p>
+        </form>
         
 <%@ include file="footer.jsp" %>
 
