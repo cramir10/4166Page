@@ -81,6 +81,21 @@ public class UserTable {
     }
 
     public static HashMap<String, User> getUsersMap() throws IOException {
-		throw new NotImplementedException(); // remove this line and implement the logic
+	try {
+            Connection myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/4166Page", "user", "123");
+            Statement myStmt = myConn.createStatement();
+            ResultSet myRs = myStmt.executeQuery("select * from users");
+            while (myRs.next()) {
+                System.out.println(myRs.getString("id") + ", " 
+                        + myRs.getString("firstName") + ", " 
+                        + myRs.getString("lastName") + ", " 
+                        + myRs.getString("email"));
+            }
+        }
+        catch (Exception exc) {
+            exc.printStackTrace();
+        }
+//        return myRs.getString("id") + ", " + myRs.getString("code") + ", " + myRs.getString("description") + ", " + myRs.getString("price");
+        return null;
     }
 }
