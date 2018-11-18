@@ -5,6 +5,7 @@
  */
 package edu.uncc.nbad;
 
+import murach.business.User;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.io.PrintWriter;
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.sql.*;
 
 /**
  *
@@ -22,6 +24,19 @@ public class MembershipServlet extends HttpServlet {
 
     //fields
     ArrayList<User> users = new ArrayList<User>(1000);
+//    public static void main(String[] args) {
+//        try {
+//            Connection myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/4166Page", "user", "123");
+//            Statement myStmt = myConn.createStatement();
+//            ResultSet myRs = myStmt.executeQuery("select * from users");
+//            while (myRs.next()) {
+//                System.out.println(myRs.getString("lastName") + ", " + myRs.getString("firstName"));
+//            }
+//        }
+//        catch (Exception exc) {
+//            exc.printStackTrace();
+//        }
+//    }
     
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
