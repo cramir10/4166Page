@@ -3,8 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/trey/Documents/NetBeansProjects/4166page/newPackage/edu/uncc/nbad/UserTable.java</file>
-            <file>file:/C:/Users/trey/Documents/NetBeansProjects/4166page/newPackage/edu/uncc/nbad/ProductTable.java</file>
+            <file>file:/C:/Users/trey/Documents/NetBeansProjects/4166page/newPackage/murach/business/UserTable.java</file>
+            <file>file:/C:/Users/trey/Documents/NetBeansProjects/4166page/newPackage/edu/uncc/nbad/MembershipServlet.java</file>
+            <file>file:/C:/Users/trey/Documents/NetBeansProjects/4166page/newPackage/murach/business/ProductTable.java</file>
+            <file>file:/C:/Users/trey/Documents/NetBeansProjects/4166page/newPackage/edu/uncc/nbad/ProductManagementServlet.java</file>
         </group>
     </open-files>
 </project-private>

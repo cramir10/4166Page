@@ -1,4 +1,4 @@
-package edu.uncc.nbad;
+package murach.business;
 
 import java.io.Serializable;
 import java.text.NumberFormat;
@@ -13,6 +13,11 @@ public class Product implements Serializable {
         code = "";
         description = "";
         price = 0;
+    }
+    public Product(String code, String description, Double price) {
+        this.code = code;
+        this.description = description;
+        this.price = price;
     }
 
     public void setCode(String code) {
